@@ -1,0 +1,298 @@
+:root {
+  --background-gradient-light: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  --title-color-light: #1a237e;
+  --title-color-dark: #003f72;
+  --card-bg-light: white;
+  --card-bg-dark: #333333;
+  --card-border-light: rgba(0, 0, 0, 0.05);
+  --card-border-dark: rgba(255, 255, 255, 0.1);
+  --card-shadow-light: rgba(0, 0, 0, 0.08);
+  --card-shadow-dark: rgba(0, 0, 0, 0.3);
+  --text-color-light: #1a237e;
+  --text-color-dark: #90caf9;
+  --hover-color-light: #3949ab;
+  --hover-color-dark: #64b5f6;
+  --gradient-light: linear-gradient(to right, #1a237e, #3949ab);
+  --gradient-dark: linear-gradient(to right, #64b5f6, #90caf9);
+  --gold: #c5a572;
+}
+
+ .container {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--background-gradient-light);
+}
+
+.title {
+  color: var(--title-color-light);
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.concursoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.concursoCard {
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--card-shadow-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--card-border-light);
+  overflow: hidden;
+  position: relative;
+}
+
+.concursoCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-light);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.concursoCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px var(--card-shadow-light);
+}
+
+.concursoCard:hover::before {
+  opacity: 1;
+}
+
+.concursoLink {
+  display: block;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.concursoName {
+  color: var(--text-color-light);
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.concursoCard:hover .concursoName {
+  color: var(--hover-color-light);
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.4rem;
+  color: var(--text-color-light);
+  font-weight: 500;
+  animation: pulse 1.5s infinite;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  position: relative;
+}
+
+.favoritoBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heartIcon {
+  font-size: 1.5rem;
+  color: #c5a572;
+  transition: all 0.3s ease;
+}
+
+.favoritoBtn:hover .heartIcon {
+  transform: scale(1.1);
+}
+
+.favoritoBtn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.favoritoBtn:active {
+  transform: scale(0.95);
+}
+
+.favorito .heartIcon {
+  color: #c5a572;
+  animation: heartBeat 0.3s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: var(--background-gradient-dark);
+  }
+
+  .title {
+    color: var(--title-color-dark);
+  }
+
+  .title::after {
+    background: var(--gradient-dark);
+  }
+
+  .concursoCard {
+    background: var(--card-bg-dark);
+    border-color: var(--card-border-dark);
+    box-shadow: 0 4px 20px var(--card-shadow-dark);
+  }
+
+  .concursoCard::before {
+    background: var(--gold);
+  }
+
+  .concursoCard:hover {
+    box-shadow: 0 8px 30px var(--card-shadow-dark);
+  }
+
+  .concursoName {
+    color: var(--text-color-dark);
+  }
+
+  .concursoCard:hover .concursoName {
+    color: var(--hover-color-dark);
+  }
+
+  .loading {
+    color: var(--text-color-dark);
+  }
+
+  .favoritoBtn {
+    background-color: rgba(51, 51, 51, 0.9);
+  }
+  
+  .favoritoBtn:hover {
+    background-color: rgba(51, 51, 51, 1);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .concursoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.buttonUf {
+  padding: 10px;
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--card-shadow-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--card-border-light);
+  overflow: hidden;
+  position: relative;
+  width: 43px;
+  height: 43px;
+  cursor: pointer;
+  color: var(--text-color-light);
+}
+
+.buttonUf::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.buttonUf:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px var(--card-shadow-light);
+}
+
+.buttonUf:hover::before {
+  opacity: 1;
+}
+
+.buttonUf:hover {
+  color: var(--hover-color-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .buttonUf {
+    background: var(--card-bg-dark);
+    border-color: var(--card-border-dark);
+    box-shadow: 0 4px 20px var(--card-shadow-dark);
+    color: var(--text-color-dark);
+  }
+
+  .buttonUf:hover {
+    color: var(--hover-color-dark);
+    box-shadow: 0 8px 30px var(--card-shadow-dark);
+  }
+} 

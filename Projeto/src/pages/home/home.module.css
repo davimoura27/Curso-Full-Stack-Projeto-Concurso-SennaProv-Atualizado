@@ -1,0 +1,425 @@
+/* .container{
+    background-color: var(--neutral-light);
+    background: linear-gradient(
+        to right,
+        var(--primary-dark),     
+        var(--primary),          
+        var(--primary-light)     
+    );
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    z-index: 0;
+}
+
+.divider{
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        var(--gold-dark),
+        var(--gold),
+        var(--gold-light),
+        var(--gold),
+        var(--gold-dark)
+    );
+    opacity: 0.8;
+    margin: 0;
+    box-shadow: 0 1px 4px rgba(197, 165, 114, 0.2);
+}
+
+
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(197, 165, 114, 0.1) 50%,  
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.title{
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-left: 100px;
+    font-style: italic;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.description{
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-left: 100px;
+    margin-top: 20px;
+    
+}
+
+.buttonCreate{
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 1.1rem;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+    background: none;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.buttonCreate:hover{
+    background-color: var(--gold);
+    color: var(--primary-dark);
+    border-bottom: none;
+    transform: translateY(-10px);
+}
+
+.cardContainer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 50%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+}
+
+.cardContainer img {
+    max-width: 100%;
+    height: auto;
+    max-height: 95%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    margin-right: -50px;
+    transform: translateY(20px);
+}
+    
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--gold-light) 50%, transparent),
+        radial-gradient(2px 2px at 50px 160px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 90px 40px, var(--gold-light) 50%, transparent),
+        radial-gradient(2px 2px at 130px 80px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 160px 120px, var(--gold-light) 50%, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 4s linear infinite;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+@keyframes stars {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200px);
+    }
+}
+
+.content {
+    flex: 1;
+    max-width: 50%;
+    padding: 2rem;
+    z-index: 2;
+    align-self: center;
+}
+ */
+
+ .container {
+    background-color: var(--neutral-light);
+    background: linear-gradient(
+        to right,
+        var(--primary-dark),     
+        var(--primary),          
+        var(--primary-light)
+    );
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    z-index: 0;
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        var(--gold-dark),
+        var(--gold),
+        var(--gold-light),
+        var(--gold),
+        var(--gold-dark)
+    );
+    opacity: 0.8;
+    margin: 0;
+    box-shadow: 0 1px 4px rgba(197, 165, 114, 0.2);
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(197, 165, 114, 0.1) 50%,  
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.title {
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-left: 100px;
+    font-style: italic;
+    font-family: 'Lato', sans-serif;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.buttonCreate {
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 1.1rem;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+    background: none;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.buttonCreate:hover {
+    background-color: var(--gold);
+    color: var(--primary-dark);
+    border-bottom: none;
+    transform: translateY(-10px);
+}
+
+.cardContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 50%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+    font-size: 2vw;
+    color: var(--white);
+    text-align: center;
+}
+
+.cardContainer img {
+    max-width: 100%;
+    height: auto;
+    max-height: 95%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    margin-right: -50px;
+    transform: translateY(20px);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--gold-light) 50%, transparent),
+        radial-gradient(2px 2px at 50px 160px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 90px 40px, var(--gold-light) 50%, transparent),
+        radial-gradient(2px 2px at 130px 80px, var(--gold) 50%, transparent),
+        radial-gradient(2px 2px at 160px 120px, var(--gold-light) 50%, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 4s linear infinite;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+@keyframes stars {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200px);
+    }
+}
+
+.content {
+    flex: 1;
+    max-width: 50%;
+    padding: 2rem;
+    z-index: 2;
+    align-self: center;
+}
+
+.sobre {
+    background-color: #183761; 
+    color: black; 
+    padding: 20px; 
+    border-radius: 8px; 
+    font-family: Arial, sans-serif; 
+    line-height: 1.8;
+    max-width: 800px; 
+    margin: 40px auto; 
+    text-align: justify; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.sobre h1, .sobre h2 {
+    color: #b69661;
+    text-align: center; 
+}
+
+.sobre ul {
+    list-style-type: disc;
+    margin-left: 20px; 
+    padding-left: 10px; 
+}
+
+.sobre li {
+    margin-bottom: 10px; 
+}
+
+.sobre p {
+    margin-bottom: 20px; 
+}
+
+.sobre a {
+    color: #b69661; 
+    text-decoration: none;
+}
+
+.sobre a:hover {
+    text-decoration: underline; 
+}
+
+.sobre strong {
+    color: #b69661; 
+
+}
+
+
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    max-width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-left: 0;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .buttonCreate {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    margin: 1rem auto 0;
+  }
+
+  .cardContainer {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .cardContainer img {
+    max-height: 200px;
+    margin-right: 0;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .buttonCreate {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .cardContainer img {
+    display: none;
+  }
+}
