@@ -1,8 +1,8 @@
-package com.api.senai_sync.dto;
+package com.api.senai_sync.controller.dto;
 import lombok.Data;
 
 @Data
-public class LoginRequestDTO {
+public class LoginRequestDto {
     private String email;
     private String password;
 }

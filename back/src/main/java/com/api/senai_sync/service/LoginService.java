@@ -8,8 +8,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import com.api.senai_sync.config.JwtUtil;
-import com.api.senai_sync.dto.LoginRequestDTO;
-import com.api.senai_sync.dto.LoginResponseDto;
+import com.api.senai_sync.controller.dto.LoginRequestDto;
+import com.api.senai_sync.controller.dto.LoginResponseDto;
 
 @Service
 public class LoginService {
@@ -22,7 +22,7 @@ public class LoginService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public LoginResponseDto authService(LoginRequestDTO loginRequestDTO){
+    public LoginResponseDto authService(LoginRequestDto loginRequestDTO){
         Authentication authentication = new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(),
             loginRequestDTO.getPassword());
         authenticationManager.authenticate(authentication);

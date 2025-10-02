@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.api.senai_sync.dto.UserResponseDto;
+import com.api.senai_sync.controller.dto.UserResponseDto;
 import com.api.senai_sync.entity.User;
 import com.api.senai_sync.exceptions.EmailExistenteException;
 import com.api.senai_sync.repository.UserRepository;

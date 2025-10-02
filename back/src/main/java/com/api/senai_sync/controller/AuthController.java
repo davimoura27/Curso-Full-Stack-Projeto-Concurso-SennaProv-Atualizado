@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
-import com.api.senai_sync.dto.LoginRequestDTO;
+
+import com.api.senai_sync.controller.dto.LoginRequestDto;
 import com.api.senai_sync.service.LoginService;
 
 import jakarta.validation.Valid;
@@ -19,7 +20,7 @@ public class AuthController {
    private LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO loginRequestDto) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDto loginRequestDto) {
        
     try {
         return ResponseEntity.ok().body(loginService.authService(loginRequestDto));
