@@ -27,7 +27,7 @@ public class FavoritoConcursoService {
 
     private ModelMapper modelMapper = new ModelMapper();
 
-    public FavoritosResponseDto createConcursofavorito(Concurso concurso){
+    public FavoritosResponseDto createContestfavorites(Concurso concurso){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) authentication.getPrincipal();
         User userExistent = userRepository.findByEmail(user.getUsername()).get(); 
@@ -67,28 +67,15 @@ public class FavoritoConcursoService {
 
     }
 
-    public FavoritosResponseDto deleteConcursoFavoritos(String link){
+    public FavoritosResponseDto deleteConcursoFavoritos(Long id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) authentication.getPrincipal();
         User userExistente = userRepository.findByEmail(user.getUsername()).get();
 
-        List<Concurso> favoritos = userExistente.getFavoritos();
-        Concurso linkEncontrado = null;
-
-        for (Concurso concurso : favoritos) {
-            if (concurso.getLink().equals(link)) {
-                linkEncontrado = concurso;
-                break;
-            }
-        }
-        if (linkEncontrado != null) {
-            userExistente.getFavoritos().remove(linkEncontrado);
-            User novoUsuario = userRepository.save(userExistente);
-            return modelMapper.map(novoUsuario, FavoritosResponseDto.class);
-        }else{
-            throw new ConcursoFavoritoException("Concurso não encontrado nos favoritos");
-        }    
-
-
+        Concurso concurso = concursoRepository.findById(id).orElseThrow(
+            () -> new ConcursoFavoritoException("Concurso não encontrao nos favoritos"));
+        userExistente.getFavoritos().remove(concurso);
+        User newUser = userRepository.save(userExistente);
+        return modelMapper.map(newUser, FavoritosResponseDto.class);
     }
 }
