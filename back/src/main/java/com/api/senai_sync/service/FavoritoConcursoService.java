@@ -1,7 +1,5 @@
 package com.api.senai_sync.service;
 
-
-import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +51,6 @@ public class FavoritoConcursoService {
         userExistent.getFavoritos().add(concursoNovo);
         User user2 = userRepository.save(userExistent);
         return modelMapper.map(user2, FavoritosResponseDto.class);
-        
-
     }
     
     public FavoritosResponseDto listConcursoFavorito(){
@@ -63,8 +59,6 @@ public class FavoritoConcursoService {
         User userExistent = userRepository.findByEmail(user.getUsername()).get();
 
         return modelMapper.map(userExistent, FavoritosResponseDto.class);
-        
-
     }
 
     public FavoritosResponseDto deleteConcursoFavoritos(Long id){

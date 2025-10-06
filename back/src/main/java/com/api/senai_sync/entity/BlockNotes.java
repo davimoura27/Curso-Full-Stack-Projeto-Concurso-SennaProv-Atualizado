@@ -10,13 +10,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class BlockNotes {
 
     @Id
     @GeneratedValue
+    @EqualsAndHashCode.Include
     private Long id;
     
     @Column

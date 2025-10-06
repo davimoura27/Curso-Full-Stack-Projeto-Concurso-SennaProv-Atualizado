@@ -1,6 +1,7 @@
 package com.api.senai_sync.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,9 +42,9 @@ public class FavoritoConcursoController {
         try {
             return ResponseEntity.ok().body(favoritoConcursoService.deleteConcursoFavoritos(id));
         } catch (ConcursoFavoritoException e) {
-            return ResponseEntity.status(403).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }catch(BadCredentialsException e){
-            return ResponseEntity.status(403).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }    
 }

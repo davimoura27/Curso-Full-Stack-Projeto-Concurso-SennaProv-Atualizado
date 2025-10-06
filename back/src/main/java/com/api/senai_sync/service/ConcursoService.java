@@ -33,7 +33,6 @@ public class ConcursoService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return concursos;
     }
 }
