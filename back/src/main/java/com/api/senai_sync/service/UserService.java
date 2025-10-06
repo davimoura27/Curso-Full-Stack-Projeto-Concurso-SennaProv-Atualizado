@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.api.senai_sync.controller.dto.UserResponseDto;
 import com.api.senai_sync.entity.User;
-import com.api.senai_sync.exceptions.EmailExistenteException;
+import com.api.senai_sync.exceptions.EmailException;
 import com.api.senai_sync.repository.UserRepository;
 
 @Service
@@ -20,7 +20,7 @@ public class UserService {
 
     public UserResponseDto saveUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new EmailExistenteException();
+            throw new EmailException();
         }
         String encoderPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encoderPassword);

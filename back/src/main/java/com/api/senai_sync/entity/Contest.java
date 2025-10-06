@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @EqualsAndHashCode(of = "link")
-public class Concurso {
+public class Contest {
 
     @Id
     @GeneratedValue

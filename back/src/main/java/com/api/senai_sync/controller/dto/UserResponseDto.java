@@ -4,8 +4,7 @@ import lombok.Data;
 @Data
 public class UserResponseDto {
     private String name;
-    private int idade;
-    private String telefone;
-    private String email;
-    
+    private int age;
+    private String telephone;
+    private String email;    
 }

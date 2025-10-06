@@ -9,6 +9,5 @@ public class BlockNotesResponseDto {
     private String title;
     private String text;
     private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
-    
+    private LocalDateTime updateAt;    
 }

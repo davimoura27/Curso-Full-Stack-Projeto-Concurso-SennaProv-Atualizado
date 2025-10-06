@@ -33,13 +33,13 @@ public class User {
 
     @Column
     @NotNull(message = "O campo idade deve ser preenchido")
-    private int idade;
+    private int age;
 
     @Column
     @NotBlank
     @Pattern(regexp = "^\\d{11}$"
     ,message = "O telefone deve conter 11 digitos numericos incluindo DDD")
-    private String telefone;
+    private String telephone;
 
     @Column(unique = true)
     @Email(message = "Formato de email invalido")
@@ -54,7 +54,7 @@ public class User {
     @JoinTable(name = "user_favoritos",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "concurso_id"))
-    private List<Concurso> favoritos;
+    private List<Contest> favorites;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<BlockNotes> notes;

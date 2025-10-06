@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalException {
-     @ExceptionHandler(EmailExistenteException.class)
-    public ResponseEntity<String> handleResource(EmailExistenteException emailExistenteException){
+     @ExceptionHandler(EmailException.class)
+    public ResponseEntity<String> handleResource(EmailException emailExistenteException){
         return new ResponseEntity<>(emailExistenteException.getMessage(),
          HttpStatus.NOT_FOUND);
     }

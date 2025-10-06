@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ConcursoService {
+public class ContestService {
 
     public List<Map<String, String>> fetchConcursosByUf(String uf) {
         List<Map<String, String>> concursos = new ArrayList<>();

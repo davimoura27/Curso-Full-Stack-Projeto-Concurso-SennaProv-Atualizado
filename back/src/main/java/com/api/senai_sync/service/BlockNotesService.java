@@ -50,6 +50,7 @@ public class BlockNotesService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userAuth = (UserDetails) authentication.getPrincipal();
         User user = userRepository.findByEmail(userAuth.getUsername()).get();
+
         List<BlockNotes> listNote = user.getNotes();
         List<BlockNotesResponseDto> listNotesDto = new ArrayList<>();
 
@@ -60,7 +61,7 @@ public class BlockNotesService {
         return listNotesDto;
     }
 
-    public List<BlockNotesResponseDto> deleteBlocknote(Long id){
+    public List<BlockNotesResponseDto> deleteBlockNote(Long id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userAuth = (UserDetails) authentication.getPrincipal();
         User user = userRepository.findByEmail(userAuth.getUsername()).get();
@@ -91,7 +92,8 @@ public class BlockNotesService {
         User user = userRepository.findByEmail(userAuth.getUsername()).get();
 
         BlockNotes blockNotes = blockNotesRepository.findById(id)
-        .orElseThrow(() -> new BlockNotesExceptions("Anotação não encontrada"));
+            .orElseThrow(() -> new BlockNotesExceptions("Anotação não encontrada"));
+            
         if (user.getNotes().contains(blockNotes)) {
             blockNotes.setTitle(blockNotesRequestDto.getTitle());
             blockNotes.setText(blockNotesRequestDto.getText());

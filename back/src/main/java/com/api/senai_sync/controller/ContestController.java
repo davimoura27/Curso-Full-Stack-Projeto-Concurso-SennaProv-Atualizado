@@ -1,6 +1,6 @@
 package com.api.senai_sync.controller;
 
-import com.api.senai_sync.service.ConcursoService;
+import com.api.senai_sync.service.ContestService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +13,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/concursos")
 @CrossOrigin(origins = "http://localhost:3001")
-public class ConcursoController {
+public class ContestController {
 
-    private final ConcursoService concursoService;
+    private final ContestService concursoService;
 
-    public ConcursoController(ConcursoService concursoService) {
+    public ContestController(ContestService concursoService) {
         this.concursoService = concursoService;
     }
 

@@ -35,7 +35,7 @@ public class BlockNotesController {
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<?> deleteBlockNotes(@PathVariable Long id){
         try {
-            return ResponseEntity.ok().body(blockNotesService.deleteBlocknote(id));            
+            return ResponseEntity.ok().body(blockNotesService.deleteBlockNote(id));            
         } catch (BlockNotesExceptions e) {
             return ResponseEntity.status(403).body(e.getMessage());
         }

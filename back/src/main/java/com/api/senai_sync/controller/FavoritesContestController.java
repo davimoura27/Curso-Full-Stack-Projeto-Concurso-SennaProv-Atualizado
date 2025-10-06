@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.api.senai_sync.entity.Concurso;
-import com.api.senai_sync.exceptions.ConcursoFavoritoException;
-import com.api.senai_sync.service.FavoritoConcursoService;
+import com.api.senai_sync.entity.Contest;
+import com.api.senai_sync.exceptions.ContestFavoritesException;
+import com.api.senai_sync.service.FavoritesContestService;
 
 import jakarta.validation.Valid;
 
 
 @RestController
 @RequestMapping("/favoritos")
-public class FavoritoConcursoController {
+public class FavoritesContestController {
 
     @Autowired
-    private FavoritoConcursoService favoritoConcursoService;
+    private FavoritesContestService favoritoConcursoService;
 
     @PostMapping("/adicionar")
-    public ResponseEntity<?> addFavorites(@Valid @RequestBody Concurso concurso){ 
+    public ResponseEntity<?> addFavorites(@Valid @RequestBody Contest concurso){ 
         try {
             return ResponseEntity.ok().body(favoritoConcursoService.createContestfavorites(concurso));            
-        } catch (ConcursoFavoritoException e) {
+        } catch (ContestFavoritesException e) {
             return ResponseEntity.status(403).body(e.getMessage());
         }       
     }
     @GetMapping("/lista")
     public ResponseEntity<?> listFavorites(){
-        return ResponseEntity.ok().body(favoritoConcursoService.listConcursoFavorito());
+        return ResponseEntity.ok().body(favoritoConcursoService.listContestFavorites());
     }
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<?> deleteFavorites(@PathVariable Long id){
         try {
-            return ResponseEntity.ok().body(favoritoConcursoService.deleteConcursoFavoritos(id));
-        } catch (ConcursoFavoritoException e) {
+            return ResponseEntity.ok().body(favoritoConcursoService.deleteContestFavorites(id));
+        } catch (ContestFavoritesException e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }catch(BadCredentialsException e){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
