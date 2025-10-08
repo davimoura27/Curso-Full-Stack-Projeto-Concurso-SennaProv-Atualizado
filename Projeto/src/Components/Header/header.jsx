@@ -90,26 +90,6 @@ export function Header() {
       <button className={styles.menuButton} onClick={toggleMenu} aria-label="Abrir menu">
         <List size={32} />
       </button>
-
-
-        {/* Área de usuário: mostra informações do usuário ou botão de login */}
-        {/* <li>
-          {isLoggedIn ? (
-            // Se estiver logado, mostra ícone e nome do usuário
-            <div className={styles.userInfo} onClick={handleLogout}>
-              <User size={24} weight="fill" className={styles.userIcon} />
-              <span className={styles.username}>{username}</span>
-            </div>
-          ) : (
-            // Se não estiver logado, mostra botão de login
-            <button
-              className={styles.loginButton}
-              onClick={() => setIsModalOpen(true)}
-            >
-              Login
-            </button>
-          )}
-        </li> */}
       </ul>
 
 
@@ -126,15 +106,6 @@ export function Header() {
               </button>
             </li>
           )}
-          <div className={styles.sobreNoisButton}>
-          <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
-          </div>
-          <div  className={styles.sobreNoisButton}>
-          <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
-          </div>
-          <div  className={styles.sobreNoisButton}>
-          <li><Link to="/favoritos">Favoritos</Link></li>
-          </div>
          
           <li>
             <button onClick={toggleTheme} className={styles.themeToggle}>

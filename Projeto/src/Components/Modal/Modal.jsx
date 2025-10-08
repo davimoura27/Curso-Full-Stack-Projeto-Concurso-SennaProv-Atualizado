@@ -4,43 +4,24 @@ import PropTypes from "prop-types";
 import SignUp from "../SignUp/SignUp";
 import { loginUser } from "../../services/ApiLogin/apiLogin";
 
-/**
- * Componente Modal responsável pela interface de login do usuário
- * @param {boolean} isOpen - Controla se o modal está visível
- * @param {function} onClose - Função para fechar o modal
- * @param {function} onLoginSuccess - Callback executado após login bem-sucedido
- */
+
+
 export function Modal({ isOpen, onClose, onLoginSuccess }) {
-  // Estados para controlar os campos do formulário e estado do modal
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUp, setShowSignUp] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  /**
-   * Manipula o envio do formulário de login
-   * @param {Event} e - Evento do formulário
-   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
-    try {
-      // Tenta realizar o login do usuário usando o serviço de API
-      const data = await loginUser(username, password);
-      console.log('[Modal] Dados do login:', data);
-      
-      // Limpa os campos após login bem-sucedido
-      setUsername("");
-      setPassword("");
-      
-      // Notifica o componente pai sobre o sucesso do login
-      onLoginSuccess({
-        ...data,
-        username: data.username || username
-      });
+    try {     
+      const response = await loginUser(username, password);
+      console.log('[Modal] Dados do login:', response);
+     
     } catch (error) {
       console.error("[Modal]:", error.message);
       // Exibe mensagem de erro apropriada para o usuário

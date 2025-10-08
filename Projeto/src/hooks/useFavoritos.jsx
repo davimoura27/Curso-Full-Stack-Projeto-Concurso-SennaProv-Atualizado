@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { favorites } from '../services/ApiLogin/apiLogin';
 
 export function useFavoritos() {
   // Estado para armazenar a lista de concursos favoritos
@@ -8,17 +9,15 @@ export function useFavoritos() {
   // Se houver dados salvos, tenta fazer o parse do JSON e atualiza o estado
   // Em caso de erro, limpa o localStorage
   useEffect(() => {
-    const favoritosStorage = localStorage.getItem('concursos-favoritos');
-    if (favoritosStorage) {
+    const listaFavoritos = async () =>{
       try {
-        const favoritosParsed = JSON.parse(favoritosStorage);
-        console.log('Favoritos carregados:', favoritosParsed);
-        setFavoritos(favoritosParsed);
-      } catch (error) {
-        console.error('Erro ao carregar favoritos:', error);
-        localStorage.removeItem('concursos-favoritos');
+        const response = await favorites.getFavorites();
+        console.log("Lista de favoritos:", response.data.favorites)
+      } catch (error){
+        console.log("Lista não carregada", error.response)        
       }
-    }
+    } 
+    listaFavoritos()
   }, []);
 
   // Função para adicionar um novo concurso aos favoritos
