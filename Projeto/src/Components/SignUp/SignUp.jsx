@@ -38,7 +38,7 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
 
                 <form onSubmit={handleSubmit}>
                     <div className={styles.inputGroup}>
-                        <label htmlFor="name">Nome completo:</label>
+                        <label htmlFor="name">Nome e sobrenome:</label>
                         <input
                             type="text"
                             id="name"

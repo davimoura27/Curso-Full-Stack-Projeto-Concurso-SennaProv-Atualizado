@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-/**
- * Hook personalizado para gerenciar a busca e estado dos concursos
- * @param {string} uf - Sigla do estado para filtrar os concursos
- * @returns {Object} Retorna um objeto contendo a lista de concursos e o estado de carregamento
- */
-const useConcursos = (uf) => {
+export function useConcursos(uf){
   const [concursos, setConcursos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    /**
-     * Função assíncrona para buscar os concursos da API
-     * Adiciona IDs únicos aos concursos caso não existam
-     * Gerencia estados de carregamento e tratamento de erros
-     */
+
     const fetchConcursos = async () => {
       try {
         const config = {
@@ -49,4 +40,3 @@ const useConcursos = (uf) => {
   return { concursos, loading };
 };
 
-export default useConcursos;

@@ -1,20 +1,20 @@
-import { useFavoritos } from '../../hooks/useFavoritos';
+import { useFavorites } from '../../hooks/useFavorites';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import './favoritos.css'
+import './favorites.css'
 
-export function Favoritos() {
-  const { favoritos, removerFavorito } = useFavoritos();
+export function Favorites() {
+  const { contest, removeFavorites } = useFavorites();
 
-  console.log('Favoritos:', favoritos);
+  console.log('Favoritos:', contest);
 
   return (
     <div className="favoritos-container">
       <h1>Meus Concursos Favoritos</h1>
-      {favoritos.length === 0 ? (
-        <p>Você ainda não tem concursos favoritos.</p>
+      {contest.length === 0 ? (
+        <p>Você ainda não tem concursos registrados.</p>
       ) : (
         <div className="favoritos-grid">
-          {favoritos.map((concurso) => (
+          {contest.map((concurso) => (
             <div key={concurso.id} className="favorito-card">
               <div className="favorito-content">
                 <a
@@ -28,7 +28,7 @@ export function Favoritos() {
                   <p>{concurso.salario}</p>
                 </a>
                 <button
-                  onClick={() => removerFavorito(concurso.id)}
+                  onClick={() => removeFavorites(concurso.id)}
                   className="remover-favorito"
                 >
                   <RiDeleteBinLine className="delete-icon" />

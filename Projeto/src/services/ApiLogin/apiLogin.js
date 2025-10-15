@@ -14,6 +14,19 @@ api.interceptors.request.use((config) => {
     }
     return config;
 })
+api.interceptors.response.use(
+    (response) => response, (error) =>{
+        if(error.response && (error.response.status === 401)){
+            localStorage.removeItem("userData")
+            delete api.defaults.headers.common['Authorization']
+            setTimeout(() => {
+                window.location.href = '/'
+            })
+            console.log("Token expirado, faça login novamente")
+        }
+        return Promise.reject(error)
+    }
+)
 
 export const registerUser = async (name, age, telephone, email, password) => {
     try {
@@ -49,9 +62,11 @@ export const loginUser = async (email, password) => {
         const response = await api.post('/auth/login', { email, password });
         if (response.status === 200 && response.data){
             const userData = {
+                name: response.data.name,
                 email: response.data.email,
                 token: response.data.token
             }
+            console.log(userData)
             localStorage.setItem("userData", JSON.stringify(userData))
             return userData
         }
@@ -60,26 +75,39 @@ export const loginUser = async (email, password) => {
         return error;
     }
 };
+export const getStoredUser = () =>{
+    try {
+        const user = localStorage.getItem("userData")
+        const userExist = JSON.parse(user)
+        if (userExist) {
+            return userExist
+        } else {
+            return null
+        }        
+    } catch (error) {
+        console.log("Erro ao buscar usuario no banco:", error)
+    }   
+}
+export const logoutUser = () => {
+    localStorage.removeItem("userData")
+    console.log("Usuraio removido")
+}
 export const favorites = {
     getFavorites: () => api.get("/favoritos/lista"),
-    createFavorites:(favorites) => api.post("/favoritos/adicionar", favorites),
-    deleteFavorites:(id, favorites)=> api.delete(`/favoritos/remover/${id}`, favorites)
+    createFavorites:(newFavorites) => api.post("/favoritos/adicionar", newFavorites),
+    deleteFavorites:(id)=> api.delete(`/favoritos/remove/${id}`)
+}
+
+export const blockNotes = {
+    getBlockNotes: () => api.get("/notas/lista"),
+    postBlockNotes: (blockNotes) => api.post("/notas/adicionar",blockNotes),
+    putBlockNotes: (id, blockNotes) => api.put(`/notas/atualizar/${id}`, blockNotes),
+    deleteBlockNotes: (id) => api.delete(`/notas/remove/${id}`)
 }
 
 
 
 
-
-
-
-
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
 
 /**
  * Serviço de autenticação que gerencia o token JWT

@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import com.api.senai_sync.config.JwtUtil;
 import com.api.senai_sync.controller.dto.LoginRequestDto;
 import com.api.senai_sync.controller.dto.LoginResponseDto;
+import com.api.senai_sync.entity.User;
+import com.api.senai_sync.repository.UserRepository;
 
 @Service
 public class LoginService {
@@ -20,6 +22,9 @@ public class LoginService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private JwtUtil jwtUtil;
 
     public LoginResponseDto authService(LoginRequestDto loginRequestDTO){
@@ -28,8 +33,9 @@ public class LoginService {
         authenticationManager.authenticate(authentication);
 
         String token = jwtUtil.generateToken(loginRequestDTO.getEmail());
+        User user = userRepository.findByEmail(loginRequestDTO.getEmail()).get();
 
-        LoginResponseDto loginResponseDto = modelMapper.map(loginRequestDTO, LoginResponseDto.class);
+        LoginResponseDto loginResponseDto = modelMapper.map(user, LoginResponseDto.class);
         loginResponseDto.setToken(token);
         return loginResponseDto;
     }

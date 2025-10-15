@@ -6,19 +6,17 @@ import { MagnifyingGlass, Sun, Moon, User, List } from "@phosphor-icons/react";
 import styles from "./header.module.css";
 import { Modal } from "../Modal/Modal";
 import { useTheme } from "../../contexts/ThemeContext";
-import { authService } from "../../services/ApiLogin/apiLogin"; 
+import { authService, logoutUser } from "../../services/ApiLogin/apiLogin"; 
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // Estados para controlar o modal de login, status de autenticação e nome do usuário
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.isAuthenticated());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  // Hook personalizado para gerenciar o tema (claro/escuro)
-  const { isDarkMode, toggleTheme } = useTheme();
+  const {isDarkMode, toggleTheme } = useTheme();
 
-  const location = useLocation(); // Obtém a rota atual
-  const navigate = useNavigate(); // Permite navegação programática
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
   const backButtonPages = ["/bloco-de-notas", "/ajuda-nos-estudos", "/favoritos"];
   
   const toggleMenu = () => {
@@ -27,54 +25,53 @@ export function Header() {
   const showBackButton = backButtonPages.includes(location.pathname); // Verifica se deve exibir o botão "Voltar"
   // Efeito para verificar o status de autenticação ao montar o componente
   useEffect(() => {
-    setIsLoggedIn(authService.isAuthenticated());
+    const storedUser = JSON.parse(localStorage.getItem("userData"))
+    if(storedUser){
+      setIsLoggedIn(true);
+      setUsername(storedUser.name)      
+    }   
   }, []);
 
   // Função executada após login bem-sucedido
   const handleLoginSuccess = (userData) => {
     setIsLoggedIn(true);
-    setUsername(userData.username);
-    setIsModalOpen(false);
+    setUsername(userData.name);
+    setIsModalOpen(false);    
   };
 
   // Função para realizar o logout do usuário
   const handleLogout = () => {
-    authService.logout();
+    logoutUser()
     setIsLoggedIn(false);
     setUsername("");
+    navigate("/")
+
   };
 
   return (
     <div className={styles.container}>
       {/* Logo com link para a página inicial */}
       <div className={styles.imagem}>
-        <Link to="/">
+        <div>
           <img src={logo} alt="logo" />
-        </Link>
+        </div>
       </div>
 
       {/* Lista de navegação principal */}
       <ul className={styles.listHeader}>
-        
-
-
        {/* Menu lateral (telas menores) */}
       <li>
         <div className={`${styles.sideMenu} ${isMenuOpen ? styles.open : ""}`}>
           <nav className={styles.nav}>
-            <ul>
-              <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
-              <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
-              <li><Link to="/favoritos">Favoritos</Link></li>
+            <ul>              
               <li><button className={styles.loginButtonMenu} onClick={() => setIsModalOpen(true)}>
               Login
-            </button></li>
+            </button></li>           
               <li><button className={styles.fecharButton} onClick={toggleMenu}>Fechar</button></li>
             </ul>
           </nav>
         </div>
-      </li>
-      
+      </li>      
         {/* Botão para alternar entre tema claro e escuro */}
       <li>
           <button onClick={toggleTheme} className={styles.menuButton}>
@@ -85,44 +82,41 @@ export function Header() {
             )}
           </button>
         </li>
-
         {/* Botão do menu hambúrguer (para telas menores) */}
       <button className={styles.menuButton} onClick={toggleMenu} aria-label="Abrir menu">
         <List size={32} />
       </button>
       </ul>
-
-
-
-
-       {/* Menu de navegação padrão (telas maiores) */}
        <nav className={styles.navDesktop}>
-        <ul>
-          {/* Botão Voltar condicional */}
-          {showBackButton && (
-            <li>
-              <button className={styles.sobreNoisButton} onClick={() => navigate(-1)}>
-                Voltar
-              </button>
-            </li>
-          )}
-         
+        <ul>         
           <li>
-            <button onClick={toggleTheme} className={styles.themeToggle}>
-              {isDarkMode ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
-            </button>
-          </li>
-          <li>
-            <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
-              Login
-            </button>
+            {isLoggedIn ? (
+              <div className={styles.containerMenu}>
+                <ul className={styles.menuUsuario}>
+                  <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
+                  <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
+                  <li><Link to="/favoritos">Favoritos</Link></li>
+                </ul>
+                <div className={styles.containerButtonClaroEscuro}>
+                  <button onClick={toggleTheme} className={styles.themeToggle}>
+                    {isDarkMode ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
+                  </button>
+                </div>
+                <button onClick={handleLogout} className={styles.buttonLogout}>
+                  <User weight="fill" size={20} />
+                  <h5>{username}</h5>
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
+                  Login
+                </button>
+              </div>
+            )}
           </li>
         </ul>
       </nav>
-
-
-
-      {/* Modal de login que é exibido quando isModalOpen é true */}
       <Modal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)}

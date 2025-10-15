@@ -30,9 +30,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String authorizationHeader = request.getHeader("Authorization");
         
-        if (request.getRequestURI().equals("/auth/login") || request.getRequestURI().equals("/users/register")) {
-            chain.doFilter(request,response);
-            return;
+        if (request.getRequestURI().equals("/auth/login") || 
+            request.getRequestURI().equals("/users/register") ||
+            request.getRequestURI().equals("/api/concursos")) {
+                chain.doFilter(request,response);
+                 return;
         }
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);

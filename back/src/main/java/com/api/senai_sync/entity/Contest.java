@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@EqualsAndHashCode(of = "link")
+@Table(name = "contest")
 public class Contest {
 
     @Id
@@ -22,7 +22,5 @@ public class Contest {
 
     @Column(unique = true)
     @NotBlank(message = "O link é obrigatorio")
-    private String link;
-
-    
+    private String link;    
 }

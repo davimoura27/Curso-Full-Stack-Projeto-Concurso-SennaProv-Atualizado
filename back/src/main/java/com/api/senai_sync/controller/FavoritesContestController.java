@@ -26,9 +26,9 @@ public class FavoritesContestController {
     private FavoritesContestService favoritoConcursoService;
 
     @PostMapping("/adicionar")
-    public ResponseEntity<?> addFavorites(@Valid @RequestBody Contest concurso){ 
+    public ResponseEntity<?> addFavorites(@Valid @RequestBody Contest contest){ 
         try {
-            return ResponseEntity.ok().body(favoritoConcursoService.createContestfavorites(concurso));            
+            return ResponseEntity.ok().body(favoritoConcursoService.createContestfavorites(contest));            
         } catch (ContestFavoritesException e) {
             return ResponseEntity.status(403).body(e.getMessage());
         }       

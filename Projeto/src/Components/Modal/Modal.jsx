@@ -3,6 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import SignUp from "../SignUp/SignUp";
 import { loginUser } from "../../services/ApiLogin/apiLogin";
+import { data } from "react-router-dom";
 
 
 
@@ -20,11 +21,14 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
 
     try {     
       const response = await loginUser(username, password);
+      console.log("ola", response)
+      onLoginSuccess({
+        ...response,
+        username: response.name || username})
       console.log('[Modal] Dados do login:', response);
      
     } catch (error) {
       console.error("[Modal]:", error.message);
-      // Exibe mensagem de erro apropriada para o usuário
       setError(
         error.response?.data?.message || 
         error.message || 
@@ -35,10 +39,6 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
     }
   };
 
-  /**
-   * Alterna entre os modais de login e cadastro
-   * Limpa os campos e mensagens de erro ao alternar
-   */
   const toggleSignUp = () => {
     setShowSignUp(!showSignUp);
     setUsername("");
@@ -46,7 +46,6 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
     setError("");
   };
 
-  // Não renderiza nada se o modal estiver fechado
   if (!isOpen) return null;
 
   // Renderiza o componente de cadastro se showSignUp for true
@@ -67,7 +66,6 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
         </p>
 
         {error && <p className={styles.errorMessage}>{error}</p>}
-
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="username">Nome de usuário:</label>
