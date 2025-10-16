@@ -65,7 +65,7 @@
   }
   
   .remover-favorito {
-    background-color: #e44646;
+    background-color: var(--red);
     color: white;
     border: none;
     border-radius: 8px;
@@ -90,7 +90,7 @@
   }
   
   .remover-favorito:hover {
-    background-color: #ca2e2e;
+    background-color: darkred;
     color: white;
     box-shadow: 0 2px 6px rgba(34, 33, 33, 0.616);
     transform: translateY(-2px);
