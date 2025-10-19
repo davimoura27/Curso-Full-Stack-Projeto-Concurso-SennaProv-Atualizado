@@ -35,9 +35,33 @@ const[user, setUser] = useState("");
             console.log("Erro ao registrar nova nota:", error.response)
         }
     }
-    console.log(listNotes)
+    const editNotes = async (id, note) =>{
+        console.log("id notes", id)
+        try {
+            if(id){
+                const response = await blockNotes.putBlockNotes(id, note)
+                setListNotes(listNotes.map(prev => prev.id === response.data.id ? response.data : prev))
+            }else{
+                return
+            }
+        } catch (error) {
+            console.log("Erro ao editar nota,", error.response)
+        }
+    }
+    const removeNotes = async(id) => {
+        try {
+            const response = await blockNotes.deleteBlockNotes(id);
+            console.log("ola", response.data)
+            setListNotes(response.data)
+        } catch (error) {
+            console.log("Erro ao deletar nota,", error.response)
+        }
+    }
+    
     return {listNotes,
-            addNotes
+            addNotes,
+            removeNotes,
+            editNotes
     }
 
 }

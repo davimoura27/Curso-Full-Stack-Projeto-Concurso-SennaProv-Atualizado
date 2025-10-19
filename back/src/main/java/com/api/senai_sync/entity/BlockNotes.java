@@ -1,6 +1,6 @@
 package com.api.senai_sync.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +30,10 @@ public class BlockNotes {
     private String text;
 
     @Column
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @Column
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -41,9 +41,9 @@ public class BlockNotes {
 
     @PrePersist
     protected void Criar(){
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = LocalDate.now();
     }
     protected void Atualizar(){
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDate.now();
     }
 }

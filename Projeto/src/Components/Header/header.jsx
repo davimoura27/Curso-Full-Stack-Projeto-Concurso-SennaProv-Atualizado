@@ -88,7 +88,7 @@ export function Header() {
       </button>
       </ul>
        <nav className={styles.navDesktop}>
-        <ul>         
+        <ul>   
           <li>
             {isLoggedIn ? (
               <div className={styles.containerMenu}>
@@ -102,19 +102,23 @@ export function Header() {
                     {isDarkMode ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
                   </button>
                 </div>
+                
                 <button onClick={handleLogout} className={styles.buttonLogout}>
                   <User weight="fill" size={20} />
                   <h5>{username}</h5>
                 </button>
               </div>
             ) : (
-              <div>
+              <div className={styles.containerButtonLoginTheme}>                 
+                <button onClick={toggleTheme} className={styles.themeToggle}>                
+                  {isDarkMode ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
+                </button>                 
                 <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
                   Login
                 </button>
               </div>
-            )}
-          </li>
+            )}           
+          </li>        
         </ul>
       </nav>
       <Modal 

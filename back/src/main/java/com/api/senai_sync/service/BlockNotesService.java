@@ -1,6 +1,6 @@
 package com.api.senai_sync.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class BlockNotesService {
         newBlock.setTitle(blockNotesRequestDto.getTitle());
         newBlock.setText(blockNotesRequestDto.getText());
         newBlock.setUser(user);
-        newBlock.setCreatedAt(LocalDateTime.now());
+        newBlock.setCreatedAt(LocalDate.now());
 
         BlockNotes blockNotes = blockNotesRepository.save(newBlock);
         user.getNotes().add(blockNotes);
@@ -97,7 +97,7 @@ public class BlockNotesService {
         if (user.getNotes().contains(blockNotes)) {
             blockNotes.setTitle(blockNotesRequestDto.getTitle());
             blockNotes.setText(blockNotesRequestDto.getText());
-            blockNotes.setUpdatedAt(LocalDateTime.now());
+            blockNotes.setUpdatedAt(LocalDate.now());
             blockNotesRepository.save(blockNotes);
         }else{
             throw new BlockNotesExceptions("Anotação não encontrada ou não pertence ao usuario!");

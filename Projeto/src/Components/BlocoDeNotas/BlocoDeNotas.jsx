@@ -5,53 +5,70 @@ import { useBlockNotes } from '../../hooks/UseBlockNotes';
 export function BlocoDeNotas() {
   const[title, setTitle] = useState('')
   const [description, setDescription] = useState('');
-  const [notas, setNotas] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
-  const{listNotes,addNotes} = useBlockNotes()
+  const [editingNotes, setEditingNotes] = useState(null);
+  const{listNotes,addNotes, removeNotes, editNotes} = useBlockNotes()
+  
 
-  const textareaRef = useRef(null);  
-
-  const salvarNota = (event) => {
-    event.preventDefault()
-    console.log("Salvando nota...", { title, description });
-      addNotes({title: title, text: description})
+  const saveOrUpdateNota = () => {
+    if(!title || !description){
+      console.log("Preencha os campso")
+      return
+    }
+    try {
+      if(editingNotes){                     
+        editNotes(editingNotes.id, {title: title,text: description});
+      }else{
+        addNotes({title: title, text: description})
+      }
+      setTitle('');
+      setDescription('');
+      setEditingNotes(null)      
+    } catch (error) {
+        console.log("Erro ao atualizar ou criar nota", error.response)
+    }
+  };
+  const handleEditNotes = (notesUpdate) => {
+      setEditingNotes(notesUpdate)
+      setTitle(notesUpdate.title)
+      setDescription(notesUpdate.text) 
+  }
+  const cancelEditNotes = () => {
+      setEditingNotes(null)
       setTitle('')
-      setDescription('')
-  };
+      setDescription('') 
+  }
 
-  const editarNota = (index) => {
-    setNota(notas[index]);
-    setEditIndex(index);
-    
-    // Role até o campo de texto para edição
-    textareaRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const excluirNota = (index) => {
-    const novasNotas = notas.filter((_, i) => i !== index);
-    setNotas(novasNotas);
-    localStorage.setItem('notas', JSON.stringify(novasNotas));
+  const excluirNota = (id) => {
+    removeNotes(id)
   };
 
   return (
     <div className="bloco-de-notas">
       <h1>Bloco de Notas</h1>
       <div className='containerButtonCreate'>
-        <form onSubmit={salvarNota}>
+        <form onSubmit={saveOrUpdateNota}>
           <input
+            id='title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='Titulo'
           />
           <textarea
-            ref={textareaRef}
+            id='description'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Digite sua nota aqui..."
           />
-          <button type="submit" className="bloco-de-notas-button">
-            {editIndex !== null ? 'Atualizar Nota' : 'Salvar Nota'}
-          </button>
+          <div className='containerBlocoDeNotasButton'>
+              <button type="submit" className="bloco-de-notas-button">
+                {editingNotes ? 'Atualizar Nota' : 'Salvar Nota'}
+              </button>
+            { editingNotes && 
+              <button className="bloco-de-notas-button-cancelar" onClick={() => cancelEditNotes}>
+               Cancelar edição
+              </button>
+            }
+          </div>
         </form>
       </div>
       <div>
@@ -64,11 +81,15 @@ export function BlocoDeNotas() {
                 <div className='informacao'>
                   <p><strong>Titulo: </strong>{notes.title}</p>
                   <p><strong>Data de criação: </strong>{notes.createdAt}</p>
-                  <p className='descricao'>{notes.text}</p>
+                  <div>
+                    {notes.updatedAt &&
+                    (<p><strong>Data de atualização: </strong>{notes.updatedAt}</p>
+                  )}</div>
                 </div>
+                  <p className='descricao'>{notes.text}</p>
                 <div>
-                  <button className="editar" onClick={() => editarNota(index)}>Editar</button>
-                  <button className="excluir" onClick={() => excluirNota(index)}>Excluir</button>
+                  <button className="editar" onClick={() => handleEditNotes(notes)}>Editar</button>
+                  <button className="excluir" onClick={() => excluirNota(notes.id)}>Excluir</button>
                 </div>
               </div>
             ))}
