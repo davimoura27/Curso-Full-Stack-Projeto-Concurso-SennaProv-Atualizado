@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FaYoutube } from 'react-icons/fa';
 import styles from "./professores.module.css";
 
@@ -47,10 +47,11 @@ export function Professor() {
     ];
 
     return (
-        <div className={styles.Box}>
-            <header className={styles.BoxHeader}>
+        <div className={styles.box}>
+            <header className={styles.boxHeader}>
                 <h1>Melhores Professores para Concursos</h1>
-                <p>Confira alguns dos melhores professores para se preparar para concursos!</p>
+                <h4>Confira alguns dos melhores professores para se preparar para concursos!</h4>
+            </header>
                 <div className={styles.professoreslist}>
                     {professores.map((professor) => (
                         <div key={professor.nome} className={styles.professor}>
@@ -66,8 +67,7 @@ export function Professor() {
                             </a>
                         </div>
                     ))}
-                </div>
-            </header>
+                </div>            
         </div>
     );
 }

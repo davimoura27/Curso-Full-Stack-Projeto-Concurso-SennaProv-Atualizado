@@ -207,6 +207,7 @@
     gap: 15px;
 }
 
+
 .containerButtonClaroEscuro{
     display: flex;
     align-items: center;
@@ -310,46 +311,30 @@
 }
 
 /* Estilos para o menu de navegação lateral */
-.sideMenu .nav ul {
+.sideMenu .nav {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 2rem;
     margin-top: 80px;               /* Remove o espaço no topo */
-    padding: 0;
-    list-style: none;
+    padding: 10px;
+    gap: 1rem;
 }
-
-.sideMenu .nav ul li {
-    padding-left: 30px; /* Remove o padding à esquerda */
-}
-
-.sideMenu .nav ul li a {
+.sideMenu  {
     text-decoration: none;
     color: var(--neutral-light);
     font-size: 1.2rem;
     font-weight: 600;
     white-space: nowrap;
 }
-
-.navDesktop ul {
-    display: flex;
-    gap: 2rem; 
-    margin: 0;
-    padding: 0;
-    align-items: center; 
-}
-
-.navDesktop ul li {
+.nav ul li {
     list-style: none;
 }
-
-
-.navDesktop ul li a {
-    text-decoration: none;
-    color: var(--neutral-light);
-    font-size: 1.2rem;
-    font-weight: 550;
-    white-space: nowrap; 
+.containerMenuLateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .sobreNoisButton {
@@ -382,12 +367,18 @@
     transition: all 0.3s ease;        
 }
 
+.menuLateralUsuario {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;    
+}
+
 .fecharButton {
-    background-color: red;
-    
-    color: var(--white);
-   
-    padding: 0.6rem 1.5rem;
+    background-color: red;    
+    color: var(--white);   
+    padding: 0.6rem;
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.9rem;
@@ -396,8 +387,11 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     position: relative;
+    border: none;
+    width: 90%;
     
 }
+
 /* Responsividade: Ajustes para telas pequenas */
 @media (max-width: 885px) {
     /* Exibe o botão do menu apenas em telas pequenas */

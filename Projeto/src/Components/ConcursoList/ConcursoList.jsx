@@ -2,26 +2,17 @@ import {useConcursos} from "../../hooks/UseConcurso";
 import { useFavorites }  from "../../hooks/useFavorites";
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import styles from "./ConcursoList.module.css";
-import { useEffect, useState } from "react";
-import { getStoredUser } from "../../services/ApiLogin/apiLogin";
 
 
 const ConcursoList = ({uf, setUf}) => {
 
-  const [user, setUser] = useState(null)
+ 
   const { concursos, loading } = useConcursos(uf);
-  const { addFavorites, removeFavorites, isFavorites, contest } = useFavorites();
-
-  useEffect(() => {
-    const userExistent = getStoredUser();
-    if(userExistent){
-      setUser(userExistent)
-    }
-  },[])
-
+  const { addFavorites, removeFavorites, isFavorites, contest, user } = useFavorites();
+  
+  
   const handleFavorito = (concurso) => {
     const newContest = contest.find(c => c.link === concurso.link)
-    console.log("newContest",newContest)
     if (newContest) {
       removeFavorites(newContest.id);
     } else {
@@ -29,14 +20,13 @@ const ConcursoList = ({uf, setUf}) => {
     }
   };
 
-  const isFavoritesConcurso = isFavorites(concursos.link)
   if (loading) return <div className={styles.loading}>Carregando...</div>;
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Lista de Concursos</h1>
       <div className={styles.buttonContainer}>
-        <button className={styles.buttonUf} onClick={() => setUf("ac")}><div className={styles.topBar}></div>AC</button>
+        <button className={styles.buttonUf} onClick={() => setUf("ac")}>AC</button>
         <button className={styles.buttonUf} onClick={() => setUf("al")}>AL</button>
         <button className={styles.buttonUf} onClick={() => setUf("am")}>AM</button>
         <button className={styles.buttonUf} onClick={() => setUf("ap")}>AP</button>
@@ -80,8 +70,7 @@ const ConcursoList = ({uf, setUf}) => {
               {user &&
               <button
                 onClick={() => handleFavorito(concurso)}
-                className={`${styles.favoritoBtn} ${isFavorites(concurso.link) ? styles.favorito : "" }`}
-                aria-label={isFavorites(concurso.link) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                className={`${styles.favoritoBtn} ${isFavorites(concurso.link) ? styles.favorito : "" }`}                
               >
                   {isFavorites(concurso.link) ? (
                   <AiFillHeart className={styles.heartIcon} />

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
-import { MagnifyingGlass, Sun, Moon, User, List } from "@phosphor-icons/react";
+import { Sun, Moon, User, List } from "@phosphor-icons/react";
 import styles from "./header.module.css";
 import { Modal } from "../Modal/Modal";
 import { useTheme } from "../../contexts/ThemeContext";
-import { authService, logoutUser } from "../../services/ApiLogin/apiLogin"; 
+import { getStoredUser, logoutUser } from "../../services/ApiLogin/apiLogin"; 
+import SignUp from "../SignUp/SignUp";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,28 +15,33 @@ export function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const {isDarkMode, toggleTheme } = useTheme();
-
-  const location = useLocation(); 
+ 
   const navigate = useNavigate(); 
-  const backButtonPages = ["/bloco-de-notas", "/ajuda-nos-estudos", "/favoritos"];
   
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
-  const showBackButton = backButtonPages.includes(location.pathname); // Verifica se deve exibir o botão "Voltar"
-  // Efeito para verificar o status de autenticação ao montar o componente
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("userData"))
-    if(storedUser){
-      setIsLoggedIn(true);
-      setUsername(storedUser.name)      
-    }   
+    const loadUser = () => {
+      const storedUser = getStoredUser()
+      if(storedUser){
+        setIsLoggedIn(true);
+        setUsername(storedUser.name)      
+      }else{
+        setIsLoggedIn(false)
+        setUsername("")
+      }  
+    }
+    loadUser()
+    window.addEventListener("userChanged", loadUser)
+    return () => {
+      window.removeEventListener("userChanged", loadUser)
+    }     
   }, []);
 
   // Função executada após login bem-sucedido
-  const handleLoginSuccess = (userData) => {
+  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    setUsername(userData.name);
     setIsModalOpen(false);    
   };
 
@@ -45,7 +51,6 @@ export function Header() {
     setIsLoggedIn(false);
     setUsername("");
     navigate("/")
-
   };
 
   return (
@@ -64,11 +69,30 @@ export function Header() {
         <div className={`${styles.sideMenu} ${isMenuOpen ? styles.open : ""}`}>
           <nav className={styles.nav}>
             <ul>              
-              <li><button className={styles.loginButtonMenu} onClick={() => setIsModalOpen(true)}>
-              Login
-            </button></li>           
-              <li><button className={styles.fecharButton} onClick={toggleMenu}>Fechar</button></li>
+                <li>
+                  {isLoggedIn ? (
+                    <div className={styles.containerMenuLateral}>
+                      <button onClick={handleLogout} className={styles.buttonLogout}>
+                        <User weight="fill" size={20} />
+                        <h5>{username}</h5>
+                      </button>
+                      <ul className={styles.menuLateralUsuario}>
+                        <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
+                        <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
+                        <li><Link to="/favoritos">Favoritos</Link></li>
+                      </ul>                
+
+                    </div>
+                  ) : (
+                    <div>
+                      <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
+                        Login
+                      </button>
+                    </div>
+                  )}
+                </li>                   
             </ul>
+                <button className={styles.fecharButton} onClick={toggleMenu}>Fechar</button>
           </nav>
         </div>
       </li>      

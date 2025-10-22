@@ -3,8 +3,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import SignUp from "../SignUp/SignUp";
 import { loginUser } from "../../services/ApiLogin/apiLogin";
-import { data } from "react-router-dom";
-
 
 
 export function Modal({ isOpen, onClose, onLoginSuccess }) {
@@ -16,27 +14,17 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setIsLoading(true);
-
-    try {     
-      const response = await loginUser(username, password);
-      console.log("ola", response)
+    setError("");    
+    setIsLoading(true);        
+    const response = await loginUser(username, password);
+    if(response.success){
       onLoginSuccess({
         ...response,
-        username: response.name || username})
-      console.log('[Modal] Dados do login:', response);
-     
-    } catch (error) {
-      console.error("[Modal]:", error.message);
-      setError(
-        error.response?.data?.message || 
-        error.message || 
-        'Erro ao fazer login. Verifique suas credenciais.'
-      );
-    } finally {
-      setIsLoading(false);
-    }
+        username: response.data.name || username})            
+      }else{
+        setError(response.error)
+      }
+      setIsLoading(false);   
   };
 
   const toggleSignUp = () => {
@@ -48,9 +36,8 @@ export function Modal({ isOpen, onClose, onLoginSuccess }) {
 
   if (!isOpen) return null;
 
-  // Renderiza o componente de cadastro se showSignUp for true
   if (showSignUp) {
-    return <SignUp isOpen={isOpen} onClose={onClose} onToggle={toggleSignUp} />;
+    return <SignUp isOpen={isOpen} onClose={onClose} onToggle={toggleSignUp} onLoginSuccess={onLoginSuccess} />;
   }
 
   return (

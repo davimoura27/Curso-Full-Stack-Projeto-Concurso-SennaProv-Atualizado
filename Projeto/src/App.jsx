@@ -1,28 +1,40 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Header } from "./Components/Header/header";
 import { Home } from "./pages/home/Home";
 import { Favorites } from "./pages/favorites/Favorites";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BlocoDeNotas } from './Components/BlocoDeNotas/BlocoDeNotas';
 import { Professor } from './Components/Professores/professores';
-import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import { useEffect } from "react";
 
 
 function App() {
-  return (
-    <BrowserRouter>
+  const navigate = useNavigate()
+  useEffect(()=>{
+    const handleTokenExpired = () => {
+      alert("Sua sessão expirou. Faça login novamente");
+      navigate("/")
+    }
+    window.addEventListener("tokenExpired", handleTokenExpired)
+    return () => window.removeEventListener("tokenExpired", handleTokenExpired)
+  },[])
+  return (    
       <ThemeProvider>
-        <Header />
+        <Header/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path='/bloco-de-notas' element={<BlocoDeNotas/>} />
           <Route path='/ajuda-nos-estudos' element={<Professor/>} />
           <Route path="/favoritos" element={<Favorites />} 
           />
         </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+      </ThemeProvider>   
   );
 }
-
-export default App;
+export default function Root(){
+  return(
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  )
+}

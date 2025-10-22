@@ -5,8 +5,6 @@ import './favorites.css'
 export function Favorites() {
   const { contest, removeFavorites } = useFavorites();
 
-  console.log('Favoritos:', contest);
-
   return (
     <div className="favoritos-container">
       <h1>Meus Concursos Favoritos</h1>

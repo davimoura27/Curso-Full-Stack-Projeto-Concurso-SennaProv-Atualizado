@@ -7,15 +7,28 @@ export function useFavorites() {
   const[user, setUser] = useState("")
 
   useEffect(() => {
-    const storedUser = getStoredUser();
-    if(storedUser){
-      setUser(storedUser)
+    const loadUser = () =>{
+      const storedUser = getStoredUser();
+      if(storedUser){
+        setUser(storedUser)
+      }else{
+        setUser(null)
+        setContest([])
+        setFavoritesLink([])
+      }
+    }
+    loadUser()
+    window.addEventListener("userChanged", loadUser)
+    window.addEventListener("tokenExpired", loadUser)
+
+    return () => {
+      window.removeEventListener("userChanged", loadUser)
+      window.removeEventListener("tokenExpired", loadUser)
     }
   },[])
 
   useEffect(() => { 
     if(!user) return;
-
     const listFavoritos = async () =>{
       try {
           const response = await favorites.getFavorites();
@@ -63,6 +76,7 @@ export function useFavorites() {
           setFavoritesLink,
           addFavorites,
           removeFavorites,
-          isFavorites
+          isFavorites,
+          user
   }
 }

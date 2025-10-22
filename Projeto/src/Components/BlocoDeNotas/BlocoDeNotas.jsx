@@ -52,12 +52,14 @@ export function BlocoDeNotas() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='Titulo'
+            required
           />
           <textarea
             id='description'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Digite sua nota aqui..."
+            required
           />
           <div className='containerBlocoDeNotasButton'>
               <button type="submit" className="bloco-de-notas-button">
