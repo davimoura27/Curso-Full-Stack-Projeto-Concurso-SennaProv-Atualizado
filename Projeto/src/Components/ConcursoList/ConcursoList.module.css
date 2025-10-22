@@ -1,18 +1,19 @@
 :root {
   --background-gradient-light: linear-gradient(to bottom, #f8f9fa, #ffffff);
   --title-color-light: #1a237e;
-  --title-color-dark: #003f72;
   --card-bg-light: white;
-  --card-bg-dark: #333333;
   --card-border-light: rgba(0, 0, 0, 0.05);
-  --card-border-dark: rgba(255, 255, 255, 0.1);
-  --card-shadow-light: rgba(0, 0, 0, 0.08);
-  --card-shadow-dark: rgba(0, 0, 0, 0.3);
   --text-color-light: #1a237e;
-  --text-color-dark: #90caf9;
-  --hover-color-light: #3949ab;
-  --hover-color-dark: #64b5f6;
+  --card-shadow-light: rgba(0, 0, 0, 0.08);
   --gradient-light: linear-gradient(to right, #1a237e, #3949ab);
+  --hover-color-light: #3949ab;
+  
+  --title-color-dark: #003f72;
+  --card-bg-dark: #333333;
+  --card-border-dark: rgba(255, 255, 255, 0.1);
+  --card-shadow-dark: rgba(0, 0, 0, 0.3);
+  --text-color-dark: #90caf9;
+  --hover-color-dark: #64b5f6;
   --gradient-dark: linear-gradient(to right, #64b5f6, #90caf9);
   --gold: #c5a572;
 }
@@ -195,10 +196,116 @@
   opacity: 1;
 }
 
+
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.buttonUf {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--card-shadow-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--card-border-light);
+  overflow: hidden;
+  position: relative;
+  width: 43px;
+  height: 43px;
+  cursor: pointer;
+  color: var(--text-color-light);
+  overflow: visible;
+  z-index: 0;
+}
+
+
+.buttonUf::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  width: 95%;
+  height: 6px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+.buttonUf:after {
+  content: 'Pesquisar por estado';
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 50px;
+  top: -55%;
+  left: -170%;
+  padding: 12px 7px;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 9999;
+
+}
+
+.buttonUf:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px var(--card-shadow-light);
+}
+
+.buttonUf:hover::before, .buttonUf:hover::after{
+  opacity: 1;
+}
+@media (prefers-color-scheme: light) {
+  .buttonUf {
+      background: var(--card-bg-light);
+      border-color: var(--card-border-light);
+      box-shadow: 0 4px 20px var(--card-shadow-light);
+      color: var(--text-color-light);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+  .buttonUf {
+    background: var(--card-bg-dark);
+    border-color: var(--card-border-dark);
+    box-shadow: 0 4px 20px var(--card-shadow-dark);
+    color: var(--text-color-dark);
+  }
+
+  .buttonUf:hover {
+    color: var(--hover-color-dark);
+    box-shadow: 0 8px 30px var(--card-shadow-dark);
+  }
+} 
 @keyframes heartBeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -243,7 +350,7 @@
   .favoritoBtn {
     background-color: rgba(51, 51, 51, 0.9);
   }
-  
+
   .favoritoBtn:hover {
     background-color: rgba(51, 51, 51, 1);
   }
@@ -253,103 +360,13 @@
   .container {
     padding: 2rem 1rem;
   }
-  
+
   .title {
     font-size: 2.2rem;
   }
-  
+
   .concursoGrid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
   }
 }
-
-.buttonContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.buttonUf {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--card-bg-light);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px var(--card-shadow-light);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--card-border-light);
-  overflow: hidden;
-  position: relative;
-  width: 43px;
-  height: 43px;
-  cursor: pointer;
-  color: var(--text-color-light);
-  overflow: visible;
-  z-index: 0;
-}
-
-.buttonUf::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  border-top-left-radius: 200px;
-  border-top-right-radius: 200px;
-  width: 95%;
-  height: 6px;
-  background: var(--gold);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-.buttonUf:after {
-  content: 'Pesquisar por estado';
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  bottom: 50px;
-  top: -55%;
-  left: -170%;
-  padding: 12px 7px;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 4px;
-  font-size: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 9999;
-
-}
-
-.buttonUf:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 30px var(--card-shadow-light);
-}
-
-
-.buttonUf:hover::before, .buttonUf:hover::after{
-  opacity: 1;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  .buttonUf {
-    background: var(--card-bg-dark);
-    border-color: var(--card-border-dark);
-    box-shadow: 0 4px 20px var(--card-shadow-dark);
-    color: var(--text-color-dark);
-  }
-
-  .buttonUf:hover {
-    color: var(--hover-color-dark);
-    box-shadow: 0 8px 30px var(--card-shadow-dark);
-  }
-} 

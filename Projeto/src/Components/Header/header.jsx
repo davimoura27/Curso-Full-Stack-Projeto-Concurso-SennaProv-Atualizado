@@ -7,7 +7,6 @@ import styles from "./header.module.css";
 import { Modal } from "../Modal/Modal";
 import { useTheme } from "../../contexts/ThemeContext";
 import { getStoredUser, logoutUser } from "../../services/ApiLogin/apiLogin"; 
-import SignUp from "../SignUp/SignUp";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -111,9 +110,8 @@ export function Header() {
         <List size={32} />
       </button>
       </ul>
-       <nav className={styles.navDesktop}>
-        <ul>   
-          <li>
+       <nav className={styles.navDesktop}>  
+          <div>                 
             {isLoggedIn ? (
               <div className={styles.containerMenu}>
                 <ul className={styles.menuUsuario}>
@@ -141,9 +139,8 @@ export function Header() {
                   Login
                 </button>
               </div>
-            )}           
-          </li>        
-        </ul>
+            )} 
+        </div>
       </nav>
       <Modal 
         isOpen={isModalOpen} 

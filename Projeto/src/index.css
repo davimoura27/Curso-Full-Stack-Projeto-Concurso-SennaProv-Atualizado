@@ -1,8 +1,12 @@
-:root[data-theme="light"] {
-  --background-color: #ffffff;
-  --text-color: #333333;
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
+:root {
+  --background-gradient-light: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  --title-color-light: #1a237e;
+  --card-bg-light: white;
+  --card-border-light: rgba(0, 0, 0, 0.05);
+  --text-color-light: #1a237e;
+  --card-shadow-light: rgba(0, 0, 0, 0.08);
+  --gradient-light: linear-gradient(to right, #1a237e, #3949ab);
+  --hover-color-light: #3949ab;
 }
 
 :root[data-theme="dark"] {
@@ -21,4 +25,5 @@ body {
 *{
     font-family:'Nunito';
     list-style: none;
+    text-decoration: none;
 }
