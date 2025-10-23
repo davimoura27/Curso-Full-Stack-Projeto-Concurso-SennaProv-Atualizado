@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { data, useNavigate } from 'react-router-dom';
 
 export const api = axios.create({
     baseURL: 'http://localhost:8080',
@@ -111,37 +110,3 @@ export const blockNotes = {
     deleteBlockNotes: (id) => api.delete(`/notas/remove/${id}`)
 }
 
-
-
-
-
-/**
- * Serviço de autenticação que gerencia o token JWT
- * Contém métodos para:
- * - login: salva o token no localStorage e configura headers
- * - logout: remove o token e limpa headers
- * - isAuthenticated: verifica se existe um token válido
- */
-export const authService = {
-    login: (token) => {
-        localStorage.setItem('token', token);
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    },
-    
-    logout: () => {
-        localStorage.removeItem('token');
-        delete api.defaults.headers.common['Authorization'];
-    },
-    
-    isAuthenticated: () => {
-        return !!localStorage.getItem('token');
-    }
-};
-
-/**
- * Função que realiza o login do usuário
- * @param {string} username - Nome de usuário
- * @param {string} password - Senha do usuário
- * @returns {Promise<Object>} Retorna um objeto com username e token em caso de sucesso
- * @throws {Error} Lança erro em caso de falha na autenticação
- */

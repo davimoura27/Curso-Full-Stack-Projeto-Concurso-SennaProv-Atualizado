@@ -3,8 +3,8 @@ import { Header } from "./Components/Header/header";
 import { Home } from "./pages/home/Home";
 import { Favorites } from "./pages/favorites/Favorites";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { BlocoDeNotas } from './Components/BlocoDeNotas/BlocoDeNotas';
-import { Professor } from './Components/Professores/professores';
+import { Notepad } from './pages/Notepad/Notepad';
+import { Teacher } from './pages/Teacher/Teacher';
 import { useEffect } from "react";
 
 
@@ -23,8 +23,8 @@ function App() {
         <Header/>
           <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path='/bloco-de-notas' element={<BlocoDeNotas/>} />
-            <Route path='/ajuda-nos-estudos' element={<Professor/>} />
+            <Route path='/bloco-de-notas' element={<Notepad/>} />
+            <Route path='/ajuda-nos-estudos' element={<Teacher/>} />
             <Route path="/favoritos" element={<Favorites />} 
             />
           </Routes>

@@ -1,9 +1,9 @@
 
 import { FaYoutube } from 'react-icons/fa';
-import styles from "./professores.module.css";
+import styles from "./teacher.module.css";
 
-export function Professor() {
-    const professores = [
+export function Teacher() {
+    const teachers = [
         {
             nome: 'Professor Robson Liers',
             canal: 'https://www.youtube.com/@prof.robsonliers',
@@ -48,17 +48,17 @@ export function Professor() {
 
     return (
         <div className={styles.box}>
-            <header className={styles.boxHeader}>
+            <div className={styles.boxHeader}>
                 <h1>Melhores Professores para Concursos</h1>
                 <h4>Confira alguns dos melhores professores para se preparar para concursos!</h4>
-            </header>
-                <div className={styles.professoreslist}>
-                    {professores.map((professor) => (
-                        <div key={professor.nome} className={styles.professor}>
-                            <h3>{professor.nome}</h3>
-                            <p>{professor.descricao}</p>
+            </div>
+                <div className={styles.teacherList}>
+                    {teachers.map((teacher) => (
+                        <div key={teacher.nome} className={styles.teacher}>
+                            <h3>{teacher.nome}</h3>
+                            <p>{teacher.descricao}</p>
                             <a
-                                href={professor.canal}
+                                href={teacher.canal}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.youtubelink}
