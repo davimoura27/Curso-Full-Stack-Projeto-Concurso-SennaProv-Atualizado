@@ -22,8 +22,6 @@ export function Favorites() {
                   className="favorito-link"
                 >
                   <h3>{concurso.name}</h3>
-                  <p>{concurso.banca}</p>
-                  <p>{concurso.salario}</p>
                 </a>
                 <button
                   onClick={() => removeFavorites(concurso.id)}

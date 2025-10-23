@@ -21,13 +21,13 @@ function App() {
   return (    
       <ThemeProvider>
         <Header/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path='/bloco-de-notas' element={<BlocoDeNotas/>} />
-          <Route path='/ajuda-nos-estudos' element={<Professor/>} />
-          <Route path="/favoritos" element={<Favorites />} 
-          />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path='/bloco-de-notas' element={<BlocoDeNotas/>} />
+            <Route path='/ajuda-nos-estudos' element={<Professor/>} />
+            <Route path="/favoritos" element={<Favorites />} 
+            />
+          </Routes>
       </ThemeProvider>   
   );
 }

@@ -43,6 +43,7 @@ export function BlocoDeNotas() {
   };
 
   return (
+    <div className='container'>
     <div className="bloco-de-notas">
       <h1>Bloco de Notas</h1>
       <div className='containerButtonCreate'>
@@ -89,7 +90,7 @@ export function BlocoDeNotas() {
                   )}</div>
                 </div>
                   <p className='descricao'>{notes.text}</p>
-                <div>
+                <div className='containerButton'>
                   <button className="editar" onClick={() => handleEditNotes(notes)}>Editar</button>
                   <button className="excluir" onClick={() => excluirNota(notes.id)}>Excluir</button>
                 </div>
@@ -98,6 +99,7 @@ export function BlocoDeNotas() {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }

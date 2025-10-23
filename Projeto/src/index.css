@@ -1,8 +1,8 @@
-:root {
+:root{
   --background-gradient-light: linear-gradient(to bottom, #f8f9fa, #ffffff);
   --title-color-light: #1a237e;
   --card-bg-light: white;
-  --card-border-light: rgba(0, 0, 0, 0.05);
+  --card-border-light: rgba(0, 0, 0, 0.089);
   --text-color-light: #1a237e;
   --card-shadow-light: rgba(0, 0, 0, 0.08);
   --gradient-light: linear-gradient(to right, #1a237e, #3949ab);
@@ -10,20 +10,24 @@
 }
 
 :root[data-theme="dark"] {
-  --background-color: #1a1a1a;
-  --text-color: #ffffff;
-  --primary-color: #4dabf7;
-  --secondary-color: #adb5bd;
+  --background-gradient-light: linear-gradient(to bottom, #1c1c1c, #2c2c2c);
+  --title-color-light: #003f72;
+  --card-bg-light: #333333;
+  --card-border-light: rgba(255, 255, 255, 0.1);
+  --card-shadow-light: rgba(0, 0, 0, 0.3);
+  --text-color-light: #90caf9;
+  --hover-color-light: #64b5f6;
+  --gradient-light: linear-gradient(to right, #64b5f6, #90caf9);
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+margin: 0;
+padding: 0; 
 }
-
 *{
+
     font-family:'Nunito';
     list-style: none;
     text-decoration: none;
+    box-sizing: border-box;
 }

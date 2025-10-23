@@ -10,15 +10,17 @@ export function Home() {
     <>
       <div className={styles.divider} />
       <div className={styles.container}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Concursos Em todo o Brasil</h1>
-          <p className={styles.description}>
-            A gama de concursos que disponibilizamos para você é a mais completa
-            do mercado.
-          </p>
-          <button className={styles.buttonCreate}>
-            Garanta seu lugar no mercado
-          </button>
+        <div className={styles.body}>
+          <div className={styles.containerDescription}>
+            <h1 className={styles.title}>Concursos Em todo o Brasil</h1>
+            <p className={styles.description}>
+              A gama de concursos que disponibilizamos para você é a mais completa
+              do mercado.
+            </p>
+            <h3 className={styles.titleH3}>
+              Garanta seu lugar no mercado
+            </h3>
+          </div>
         </div>
         <div className={styles.cardContainer}>
           <img src={studying} alt="Estudante se preparando para concurso" />

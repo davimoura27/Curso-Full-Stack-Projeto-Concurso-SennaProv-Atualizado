@@ -1,42 +1,32 @@
 
 .box {
-    background-color: #ffffff;
-    color: #333;
+    background: var(--background-gradient-light);
+    color: var(--text-color-light);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
     padding: 25px;
     gap: 15px;
     margin: 0;
+    min-height: calc(100dvh - 6rem);
   }
   
-  
-[data-theme="dark"] .box{
-    background: var(--card-border-light);
-} 
-[data-theme="dark"] .boxHeader{
-    color: var(--title-color-dark);
-}
-[data-theme ="dark"] .professor{
-   box-shadow: none;
-   background: var(--card-bg-dark);   
-}
-
 .professoreslist {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 20px;
-    color: black;    
+    color: var(--text-color-light);
 }
 
 .professor {
     padding: 15px;
     border-radius: 8px;
-    border: 0.1px solid var(--card-bg-dark);
+    border: 1px solid var(--card-border-light);
     width: 100%;
-    border: 1px solid #4746463b;
+    background: var(--card-bg-light);
+    box-shadow: 0 4px 20px var(--card-shadow-light);
     
 }
 .boxHeader{
@@ -44,7 +34,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    color: var(--title-color-light);
+    color: var(--text-color-light);
 }
 
 .youtubelink {
@@ -65,5 +55,5 @@
 }
 p{
 
-    color: #000000;
+    color: var(--text-color-light);
 }

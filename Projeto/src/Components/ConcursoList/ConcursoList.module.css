@@ -1,32 +1,14 @@
-:root {
-  --background-gradient-light: linear-gradient(to bottom, #f8f9fa, #ffffff);
-  --title-color-light: #1a237e;
-  --card-bg-light: white;
-  --card-border-light: rgba(0, 0, 0, 0.05);
-  --text-color-light: #1a237e;
-  --card-shadow-light: rgba(0, 0, 0, 0.08);
-  --gradient-light: linear-gradient(to right, #1a237e, #3949ab);
-  --hover-color-light: #3949ab;
-  
-  --title-color-dark: #003f72;
-  --card-bg-dark: #333333;
-  --card-border-dark: rgba(255, 255, 255, 0.1);
-  --card-shadow-dark: rgba(0, 0, 0, 0.3);
-  --text-color-dark: #90caf9;
-  --hover-color-dark: #64b5f6;
-  --gradient-dark: linear-gradient(to right, #64b5f6, #90caf9);
-  --gold: #c5a572;
-}
 
  .container {
   padding: 3rem 2rem;
-  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   background: var(--background-gradient-light);
+  
 }
 
 .title {
-  color: var(--title-color-light);
+  color: var(--text-color-light);
   font-size: 3rem;
   margin-bottom: 3rem;
   text-align: center;
@@ -44,7 +26,7 @@
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: var(--gold);
+  background: var(--text-color-light);
   border-radius: 2px;
 }
 
@@ -58,9 +40,10 @@
 .concursoCard {
   background: var(--card-bg-light);
   border-radius: 12px;
-  box-shadow: 0 4px 20px var(--card-shadow-light);
+  box-shadow: 0 2px 20px var(--card-shadow-light);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--card-border-light);
+  color: var(--text-color-light);
   overflow: hidden;
   position: relative;
 }
@@ -72,7 +55,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--gradient-light);
+  background: var(--gold);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -119,7 +102,6 @@
 }
 
 .favoritoBtn {
-  background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
@@ -133,7 +115,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.418);
 }
 
@@ -153,7 +135,6 @@
 }
 
 .favoritoBtn:hover {
-  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.678);
 }
 
@@ -225,6 +206,7 @@
   color: var(--text-color-light);
   overflow: visible;
   z-index: 0;
+  font-weight: 600;
 }
 
 
@@ -272,6 +254,7 @@
 .buttonUf:hover::before, .buttonUf:hover::after{
   opacity: 1;
 }
+/*
 @media (prefers-color-scheme: light) {
   .buttonUf {
       background: var(--card-bg-light);
@@ -369,4 +352,4 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
   }
-}
+}*/
