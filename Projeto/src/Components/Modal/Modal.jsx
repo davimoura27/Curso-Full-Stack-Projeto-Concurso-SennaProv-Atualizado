@@ -1,7 +1,7 @@
 import styles from "./Modal.module.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import SignUp from "../SignUp/SignUp";
+import {SignUp} from "../SignUp/SignUp";
 import { loginUser } from "../../services/ApiLogin/apiLogin";
 
 

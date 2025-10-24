@@ -40,6 +40,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Token ausente!\"}");
+            return;
         }
          
         String token = authorizationHeader.substring(7);
@@ -63,6 +64,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Token expirado\"}");
+            return;
         }
         chain.doFilter(request, response);
     }

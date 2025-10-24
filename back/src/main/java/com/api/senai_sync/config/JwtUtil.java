@@ -23,7 +23,7 @@ public class JwtUtil {
         return JWT.create()
                 .withSubject(email)
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 10))
                 .sign(getAlgorithm());
     }
 

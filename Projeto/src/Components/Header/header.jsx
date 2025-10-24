@@ -16,7 +16,7 @@ export function Header() {
   const {isDarkMode, toggleTheme } = useTheme();
  
   const navigate = useNavigate(); 
-  
+
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -33,18 +33,18 @@ export function Header() {
     }
     loadUser()
     window.addEventListener("userChanged", loadUser)
+    window.addEventListener("tokenExpired",loadUser)
     return () => {
       window.removeEventListener("userChanged", loadUser)
+      window.removeEventListener("tokenExpired", loadUser)
     }     
   }, []);
 
-  // Função executada após login bem-sucedido
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setIsModalOpen(false);    
   };
 
-  // Função para realizar o logout do usuário
   const handleLogout = () => {
     logoutUser()
     setIsLoggedIn(false);
@@ -54,49 +54,43 @@ export function Header() {
 
   return (
     <div className={styles.container}>
-      {/* Logo com link para a página inicial */}
       <div className={styles.imagem}>
         <div>
           <img src={logo} alt="logo" />
         </div>
       </div>
-
-      {/* Lista de navegação principal */}
       <ul className={styles.listHeader}>
-       {/* Menu lateral (telas menores) */}
-      <li>
-        <div className={`${styles.sideMenu} ${isMenuOpen ? styles.open : ""}`}>
-          <nav className={styles.nav}>
-            <ul>              
-                <li>
-                  {isLoggedIn ? (
-                    <div className={styles.containerMenuLateral}>
-                      <button onClick={handleLogout} className={styles.buttonLogout}>
-                        <User weight="fill" size={20} />
-                        <h5>{username}</h5>
-                      </button>
-                      <ul className={styles.menuLateralUsuario}>
-                        <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
-                        <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
-                        <li><Link to="/favoritos">Favoritos</Link></li>
-                      </ul>                
-
-                    </div>
-                  ) : (
-                    <div>
-                      <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
-                        Login
-                      </button>
-                    </div>
-                  )}
-                </li>                   
-            </ul>
-                <button className={styles.fecharButton} onClick={toggleMenu}>Fechar</button>
-          </nav>
-        </div>
-      </li>      
-        {/* Botão para alternar entre tema claro e escuro */}
-      <li>
+        <li>
+          <div className={`${styles.sideMenu} ${isMenuOpen ? styles.open : ""}`}>
+            <nav className={styles.nav}>
+              <ul>              
+                  <li>
+                    {isLoggedIn ? (
+                      <div className={styles.sideMenuContainer}>
+                        <button onClick={handleLogout} className={styles.buttonLogout}>
+                          <User weight="fill" size={20} />
+                          <h5>{username}</h5>
+                        </button>
+                        <ul className={styles.sideMenuUser}>
+                          <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
+                          <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
+                          <li><Link to="/favoritos">Favoritos</Link></li>
+                        </ul> 
+                      </div>
+                    ) : (
+                      <div>
+                        <button className={styles.loginButton} onClick={() => setIsModalOpen(true)}>
+                          Login
+                        </button>
+                      </div>
+                    )}
+                  </li>                   
+              </ul>
+                <button className={styles.closeButton} onClick={toggleMenu}>Fechar</button>
+            </nav>
+          </div>
+        </li>      
+        <li>
           <button onClick={toggleTheme} className={styles.menuButton}>
             {isDarkMode ? (
               <Sun size={20} weight="bold" />
@@ -105,26 +99,24 @@ export function Header() {
             )}
           </button>
         </li>
-        {/* Botão do menu hambúrguer (para telas menores) */}
-      <button className={styles.menuButton} onClick={toggleMenu} aria-label="Abrir menu">
-        <List size={32} />
-      </button>
+          <button className={styles.menuButton} onClick={toggleMenu}>
+            <List size={32} />
+          </button>
       </ul>
        <nav className={styles.navDesktop}>  
           <div>                 
             {isLoggedIn ? (
               <div className={styles.containerMenu}>
-                <ul className={styles.menuUsuario}>
+                <ul className={styles.menuUser}>
                   <li><Link to="/bloco-de-notas">Bloco de Notas</Link></li>
                   <li><Link to="/ajuda-nos-estudos">Professores</Link></li>
                   <li><Link to="/favoritos">Favoritos</Link></li>
                 </ul>
-                <div className={styles.containerButtonClaroEscuro}>
+                <div className={styles.containerButtonTheme}>
                   <button onClick={toggleTheme} className={styles.themeToggle}>
                     {isDarkMode ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
                   </button>
-                </div>
-                
+                </div>                
                 <button onClick={handleLogout} className={styles.buttonLogout}>
                   <User weight="fill" size={20} />
                   <h5>{username}</h5>

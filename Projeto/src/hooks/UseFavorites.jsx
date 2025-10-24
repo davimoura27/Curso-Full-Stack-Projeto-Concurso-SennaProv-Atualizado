@@ -29,7 +29,7 @@ export function useFavorites() {
 
   useEffect(() => { 
     if(!user) return;
-    const listFavoritos = async () =>{
+    const listFavorites = async () =>{
       try {
           const response = await favorites.getFavorites();
           setContest(response.data.favorites)
@@ -38,7 +38,7 @@ export function useFavorites() {
           console.log("Lista não carregada", error.response)        
         }
       } 
-    listFavoritos()
+    listFavorites()
 
   },[user]);
 
@@ -62,12 +62,10 @@ export function useFavorites() {
     setContest(updatedFavorites)
     const link = updatedFavorites.map((fav) => fav.link)
     setFavoritesLink(link)
-    console.log("Concurso deletado, nova lista:", updatedFavorites)
    } catch (error) {
     console.log("Erro ao deletar dos favoritos:", error.response)
    }
   };
-
   const isFavorites = (link) => favoritesLink.includes(link);
   
   return {contest,

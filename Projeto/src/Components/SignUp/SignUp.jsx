@@ -3,7 +3,7 @@ import styles from './SignUp.module.css';
 import PropTypes from "prop-types";
 import { registerUser } from '../../services/ApiLogin/apiLogin';
 
-const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
+export function SignUp ({ isOpen, onClose, onToggle}) {
     const[name, setName] = useState("")
     const[telephone, setTelephone] = useState("")
     const[age, setAge] = useState("")
@@ -32,7 +32,6 @@ const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
                 setError("Confirmação de senha diferente da senha")
             }     
     };
-
     if (!isOpen) return null;
 
     return (
@@ -69,7 +68,6 @@ const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
                             required
                         />
                     </div>
-
                     <div className={styles.inputGroup}>
                         <label htmlFor="idade">Idade:</label>
                         <input                            
@@ -80,7 +78,6 @@ const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
                             required
                         />
                     </div>
-
                     <div className={styles.inputGroup}>
                         <label htmlFor="username">Nome de usuário:</label>
                         <input
@@ -92,7 +89,6 @@ const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
                             required
                         />
                     </div>
-
                     <div className={styles.inputGroup}>
                         <label htmlFor="password">Senha:</label>
                         <input
@@ -123,12 +119,10 @@ const SignUp = ({ isOpen, onClose, onToggle, onLoginSuccess }) => {
                             required
                         />
                     </div>
-
                     <button type="submit" className={styles.submitButton}>
                         Criar conta
                     </button>
-                </form>
-                
+                </form>                
                 <div className={styles.divider}></div>
                 <p className={styles.loginAccount}>
                     Já tem uma conta?{" "}
@@ -145,7 +139,4 @@ SignUp.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
-    onLoginSuccess:PropTypes.func.isRequired
 };
-
-export default SignUp;

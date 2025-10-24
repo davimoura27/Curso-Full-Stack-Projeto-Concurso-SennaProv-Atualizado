@@ -32,7 +32,7 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Courier New', Courier, monospace;
 }
-h1 {
+.notepad h1{
     color: var(--gold); 
     font-size: 3rem;
     margin-bottom: 30px;
@@ -44,7 +44,6 @@ h1 {
     flex-direction: column;
     gap: 20px;
 }
-
 input{
     width: 60%;
     padding: 8px;
@@ -81,7 +80,6 @@ textarea:focus, input:focus {
     display: flex;
     gap: 15px;
 }
-
 .notepadButton {
     text-transform: uppercase;
     padding: 15px 40px;
@@ -112,7 +110,6 @@ textarea:focus, input:focus {
     width: 100%;
     max-width: 300px;
 }
-
 .notepadButton:hover {
     background: linear-gradient(145deg, var(--gold-dark), var(--gold)); 
     transform: translateY(-3px); 
@@ -127,8 +124,6 @@ textarea:focus, input:focus {
     transform: scale(0.98); 
     box-shadow: none; 
 }
-
-
 .notepadCard {
     background: var(--card-bg-light);
     padding: 20px;
@@ -145,7 +140,6 @@ textarea:focus, input:focus {
     gap: 15px; 
     color: var(--text-color-light);
 }
-
 .containerButton{
     display: flex;
     gap: 10px;
@@ -169,7 +163,6 @@ button {
     box-shadow: 0 2px 6px rgba(34, 33, 33, 0.616);
     transform: translateY(-3px);
 }
-
 .editar {
     text-transform: uppercase;
     background-color: var(--primary-light);
@@ -178,7 +171,6 @@ button {
     border: none;
     transition: 0.4s ease, transform 0.2s ease;
 }
-
 .editar:hover {
     background-color: var(--primary); 
     box-shadow: 0 2px 6px rgba(34, 33, 33, 0.616);

@@ -16,6 +16,7 @@ api.interceptors.request.use((config) => {
 })
 api.interceptors.response.use(
     (response) => response, (error) =>{
+        console.log("erro capturado", error.response)
         if(error.response && error.response.status === 401){
             if(error.config?.url?.includes("auth/login")){
                 return Promise.reject(error)
@@ -27,7 +28,6 @@ api.interceptors.response.use(
         return Promise.reject(error)
     }
 )
-
 export const registerUser = async (name, telephone, age, email, password) => {
     try {
         const res = await api.post("users/register",{
@@ -66,7 +66,6 @@ export const loginUser = async (email, password) => {
                 email: response.data.email,
                 token: response.data.token
             }
-            console.log(userData)
             localStorage.setItem("userData", JSON.stringify(userData))
             window.dispatchEvent(new Event("userChanged"))
             return {success:true,

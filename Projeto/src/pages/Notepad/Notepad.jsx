@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styles from "./notepad.module.css"
-import { useBlockNotes } from '../../hooks/UseBlockNotes';
+import { useNotepad } from '../../hooks/UseNotepad';
 
 export function Notepad() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('');
   const [editingNotes, setEditingNotes] = useState(null);
-  const {listNotes,addNotes, removeNotes, editNotes} = useBlockNotes()
+  const {listNotes,addNotes, removeNotes, editNotes} = useNotepad()
   
 
   const saveOrUpdateNota = () => {

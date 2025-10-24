@@ -11,7 +11,6 @@
   align-items: center;
   z-index: 1000;
 }
-
 .modal {
   background: var(--white);
   border: 1px solid rgba(197, 165, 114, 0.1);
@@ -22,7 +21,6 @@
   position: relative;
   box-shadow: 0 8px 32px rgba(12, 35, 64, 0.15);
 }
-
 .closeButton {
   position: absolute;
   top: 10px;
@@ -36,7 +34,6 @@
   opacity: 0.7;
   transition: all 0.2s ease;
 }
-
 .closeButton:hover {
   color: var(--primary-dark);
   opacity: 1;
@@ -69,18 +66,15 @@
   margin-bottom: 1.2rem;
   color: var(--primary-dark);
 }
-
 .subtitle {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
   color: var(--neutral);
 }
-
 .inputGroup {
   margin-bottom: 1rem;
 }
-
 .inputGroup label {
   display: block;
   margin-bottom: 0.6rem;
@@ -88,7 +82,6 @@
   font-weight: 600;
   font-size: 0.95rem;
 }
-
 .inputGroup input {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -98,12 +91,10 @@
   transition: all 0.2s ease;
   background-color: var(--white);
 }
-
 .inputGroup input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.15);
 }
-
 .submitButton {
   width: 100%;
   padding: 1rem;
@@ -119,33 +110,28 @@
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(12, 35, 64, 0.15);
 }
-
 .submitButton:hover {
   background: linear-gradient(to right, var(--primary-dark), var(--primary));
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(12, 35, 64, 0.2);
 }
-
 .divider {
   border-bottom: 1px solid var(--neutral-light);
   margin: 2.5rem 0;
   width: 100%;
   opacity: 0.8;
 }
-
 .loginAccount {
   color: var(--neutral);
   font-size: 1rem;
   text-align: center;
 }
-
 .loginAccountLink {
   color: var(--gold-dark);
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
 }
-
 .loginAccountLink:hover {
   color: var(--primary);
   text-decoration: underline;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { blockNotes, getStoredUser } from "../services/ApiLogin/apiLogin";
 
-export function useBlockNotes (){
+export function useNotepad (){
 const[listNotes, setListNotes] = useState([]);
 const[user, setUser] = useState("");
 
@@ -11,7 +11,6 @@ const[user, setUser] = useState("");
             setUser(storedUser)
         }
     },[])
-
     useEffect(() => {
         if(!user) return
 
@@ -26,7 +25,6 @@ const[user, setUser] = useState("");
         }
         listNotes()         
     },[user])
-
     const addNotes = async (newNotes) =>{
         try {
             const response = await blockNotes.postBlockNotes(newNotes);
@@ -56,12 +54,10 @@ const[user, setUser] = useState("");
         } catch (error) {
             console.log("Erro ao deletar nota,", error.response)
         }
-    }
-    
+    }    
     return {listNotes,
             addNotes,
             removeNotes,
             editNotes
     }
-
 }

@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class BlockNotes {
+public class Notepad {
 
     @Id
     @GeneratedValue

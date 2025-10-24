@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
-public class BlockNotesResponseDto {
+public class NotepadResponseDto {
     private Long id;
     private String title;
     private String text;

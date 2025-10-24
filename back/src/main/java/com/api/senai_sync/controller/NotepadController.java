@@ -11,46 +11,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.api.senai_sync.controller.dto.BlockNotesRequestDto;
-import com.api.senai_sync.exceptions.BlockNotesExceptions;
-import com.api.senai_sync.service.BlockNotesService;
+import com.api.senai_sync.controller.dto.NotepadRequestDto;
+import com.api.senai_sync.exceptions.NotepadExceptions;
+import com.api.senai_sync.service.NotepadService;
 
 @RestController
 @RequestMapping("/notas")
-public class BlockNotesController {
+public class NotepadController {
 
     @Autowired
-    private BlockNotesService blockNotesService;
+    private NotepadService notepadService;
 
     @PostMapping("/adicionar")
-    public ResponseEntity<?> addBlockNotes(@RequestBody BlockNotesRequestDto blockNotesRequestDto){
-        return ResponseEntity.ok().body(blockNotesService.createBlockNote(blockNotesRequestDto));
+    public ResponseEntity<?> addNotepad(@RequestBody NotepadRequestDto notepadRequestDto){
+        return ResponseEntity.ok().body(notepadService.createNotepad(notepadRequestDto));
     }
 
     @GetMapping("/lista")
-    public ResponseEntity<?> listBlockNotes(){
-        return ResponseEntity.ok().body(blockNotesService.listBlockNote());
+    public ResponseEntity<?> listNotepads(){
+        return ResponseEntity.ok().body(notepadService.listNotepads());
     }
 
     @DeleteMapping("/remove/{id}")
-    public ResponseEntity<?> deleteBlockNotes(@PathVariable Long id){
+    public ResponseEntity<?> deleteNotepad(@PathVariable Long id){
         try {
-            return ResponseEntity.ok().body(blockNotesService.deleteBlockNote(id));            
-        } catch (BlockNotesExceptions e) {
+            return ResponseEntity.ok().body(notepadService.deleteNotepad(id));            
+        } catch (NotepadExceptions e) {
             return ResponseEntity.status(403).body(e.getMessage());
         }
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<?> updateBlockNotes(@PathVariable Long id, @RequestBody BlockNotesRequestDto blockNotesRequestDto){
+    public ResponseEntity<?> updateNotepad(@PathVariable Long id, @RequestBody NotepadRequestDto notepadRequestDto){
         try {
-            return ResponseEntity.ok().body(blockNotesService.updateBlockNotes(id, blockNotesRequestDto));
-        } catch (BlockNotesExceptions e) {
+            return ResponseEntity.ok().body(notepadService.updateNotepad(id, notepadRequestDto));
+        } catch (NotepadExceptions e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
-    }
-
-    
+    }    
 }

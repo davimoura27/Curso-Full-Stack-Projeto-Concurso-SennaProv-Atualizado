@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useConcursos(uf){
-  const [concursos, setConcursos] = useState([]);
+export function useContest(uf){
+  const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    const fetchConcursos = async () => {
+    const fetchContests = async () => {
       try {
         const config = {
           headers: {
@@ -21,22 +20,22 @@ export function useConcursos(uf){
           config
         );
         
-        const concursosComId = response.data.map((concurso, index) => ({
-          ...concurso,
-          id: concurso.id || `concurso-${index}`
+        const contestsId = response.data.map((contest, index) => ({
+          ...contest,
+          id: contest.id || `concurso-${index}`
         }));
         
-        setConcursos(concursosComId);
+        setContests(contestsId);
       } catch (error) {
         console.error("Erro ao buscar concursos:", error);
-        setConcursos([]);
+        setContests([]);
       } finally {
         setLoading(false);
       }
     };
-    fetchConcursos();
+    fetchContests();
   }, [uf]);
 
-  return { concursos, loading };
+  return { contests, loading };
 };
 

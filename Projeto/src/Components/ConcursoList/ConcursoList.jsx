@@ -1,22 +1,19 @@
-import {useConcursos} from "../../hooks/UseConcurso";
+import {useContest} from "../../hooks/UseContest";
 import { useFavorites }  from "../../hooks/useFavorites";
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import styles from "./ConcursoList.module.css";
 
 
-const ConcursoList = ({uf, setUf}) => {
-
- 
-  const { concursos, loading } = useConcursos(uf);
+export function ConcursoList  ({uf, setUf}){ 
+  const { contests, loading } = useContest(uf);
   const { addFavorites, removeFavorites, isFavorites, contest, user } = useFavorites();
-  
-  
-  const handleFavorito = (concurso) => {
-    const newContest = contest.find(c => c.link === concurso.link)
+    
+  const handleFavorito = (contestFavorite) => {
+    const newContest = contest.find(c => c.link === contestFavorite.link)
     if (newContest) {
       removeFavorites(newContest.id);
     } else {
-      addFavorites({name: concurso.name, link: concurso.link});
+      addFavorites({name: contestFavorite.name, link: contestFavorite.link});
     }
   };
 
@@ -55,27 +52,27 @@ const ConcursoList = ({uf, setUf}) => {
         <button className={styles.buttonUf} onClick={() => setUf("to")}>TO</button>
       </div>
       
-      <div className={styles.concursoGrid}>
-        {concursos.map((concurso, index) => (
-          <div key={index} className={styles.concursoCard}>
-            <div className={styles.cardContent}>
+      <div className={styles.contestGrid}>
+        {contests.map((concurso, index) => (
+          <div key={index} className={styles.contestCard}>
+            <div className={styles.cardContainer}>
               <a
                 href={concurso.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.concursoLink}
+                className={styles.contestLink}
               >
-                <h3 className={styles.concursoName}>{concurso.name}</h3>
+                <h3 className={styles.contestName}>{concurso.name}</h3>
               </a>
               {user &&
               <button
                 onClick={() => handleFavorito(concurso)}
-                className={`${styles.favoritoBtn} ${isFavorites(concurso.link) ? styles.favorito : "" }`}                
+                className={`${styles.favoritoBtn} ${isFavorites(concurso.link) ? styles.favorite : "" }`}                
               >
                   {isFavorites(concurso.link) ? (
                   <AiFillHeart className={styles.heartIcon} />
                  ) : ( 
-                  <AiOutlineHeart className={styles.heartIconVazio} /> 
+                  <AiOutlineHeart className={styles.heartIconEmpty} /> 
                 )}
               </button> }
             </div>
@@ -85,5 +82,3 @@ const ConcursoList = ({uf, setUf}) => {
     </div>
   );
 };
-
-export default ConcursoList;

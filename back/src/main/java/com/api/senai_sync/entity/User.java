@@ -57,5 +57,5 @@ public class User {
     private List<Contest> favorites;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<BlockNotes> notes;
+    private List<Notepad> notes;
 }

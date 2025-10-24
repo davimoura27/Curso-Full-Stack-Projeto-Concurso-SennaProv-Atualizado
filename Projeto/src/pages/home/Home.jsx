@@ -1,6 +1,6 @@
 import styles from "./home.module.css";
 import studying from "../../assets/img/8602650.png";
-import ConcursoList from "../../Components/ConcursoList/ConcursoList";
+import {ConcursoList} from "../../Components/ConcursoList/ConcursoList";
 import { useState } from "react";
 
 export function Home() {
