@@ -55,7 +55,7 @@ Tela com menu hamburguer para telas menores:
 ![Menu](images/TelaMenorMenuHamburguer.png)
 
 Tela inicial logado(Tema claro):
-![TelaInicialLogadoTemaClaro](images/TelaMenorMenuHamburguer.png)
+![TelaInicialLogadoTemaClaro](images/TelaInicialLogadoTemaClaro.png)
 
 Tela de bloco de notas(Tema claro):
 ![BlocoNotasTemaClaro](images/TelaBlocoNotastemaclaro.png)
