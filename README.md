@@ -6,7 +6,9 @@ Esse projeto foi inicialmente desenvolvido em grupo durante o curso de Desenvolv
 O objetivo foi transformar um projeto acadêmico em algo próximo de um sistema real de produção.
 
 Repositorio do projeto anterior:
+
 Front:https://github.com/davimoura27/CursoFullStack-Frontend-Projeto-sennaProv-EmGrupo-React.git
+
 Back:https://github.com/davimoura27/CursoFullStack-backend-Projeto-sennaProv-EmGupo-SpringBoot.git
 
 Tecnologias Utilizadas:
