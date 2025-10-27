@@ -21,6 +21,6 @@ Layout responsivo com menu hambúrguer
 
  Telas do Projeto
 
-![Home](.images/TelaLogin.png)
+![Home](images/TelaLogin.png)
 
 
